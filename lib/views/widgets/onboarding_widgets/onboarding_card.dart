@@ -18,61 +18,59 @@ class OnboardingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.sizeOf(context).height * 0.80,
-      width: MediaQuery.sizeOf(context).width,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              image,
-              fit: BoxFit.contain,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                image,
+                height: MediaQuery.of(context).size.height * 0.60,
+                width: MediaQuery.of(context).size.height * 0.53,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Column(
-            children: [
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: AppColors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: AppColors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                    fontFamily: 'Inter',
-                  ),
-                ),
-              ),
-            ],
-          ),
-          MaterialButton(
-            minWidth: 300,
-            onPressed: () => onPressed(),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Text(
+          title,
+          style: const TextStyle(
             color: AppColors.white,
-            child: Text(
-              buttonText,
-              style: const TextStyle(
-                  color: AppColors.green,
-                  fontWeight: FontWeight.w900,
-                  fontFamily: 'Inter'),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          description,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: AppColors.white,
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(height: 10),
+        MaterialButton(
+          onPressed: () => onPressed(),
+          color: AppColors.white,
+          minWidth: 247,
+          height: 60,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+          child: Text(
+            buttonText,
+            style: const TextStyle(
+              color: AppColors.greenTextButton,
+              fontFamily: 'Inter',
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }

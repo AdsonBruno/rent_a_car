@@ -29,51 +29,55 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       },
     ),
     OnboardingCard(
-      image: 'assets/images/image_onboarding_2.png',
-      title: 'Bem-vindo(a) ao aluguel de carro',
+      image: 'assets/images/onboarding_2.png',
+      title: 'Vários modelos de veículos para seu gosto',
       description:
-          'Vamos facilitar sua viagem, com a rental car você não se preocupa com detalhes da viagem, pois cuidamos de tudo para você',
+          'Esolha o grupo de carros que mais te agrada e que atenda as suas necessidades.',
       buttonText: 'Entrar',
       onPressed: () {},
     ),
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.green,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              SmoothPageIndicator(
-                controller: _pageController,
-                count: _onboardingScreens.length,
-                onDotClicked: (index) {
-                  _pageController.animateToPage(
-                    index,
-                    duration: Durations.long2,
-                    curve: Curves.linear,
-                  );
-                },
-                effect: const SwapEffect(
-                  type: SwapType.yRotation,
-                  activeDotColor: Color(0xFF07FC49),
-                  dotColor: Color(0xFFFFFFFF),
-                  strokeWidth: 2.0,
-                  spacing: 14,
-                  paintStyle: PaintingStyle.stroke,
-                ),
-              ),
-              Expanded(
-                child: PageView(
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: AppColors.green,
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                SmoothPageIndicator(
                   controller: _pageController,
-                  children: _onboardingScreens,
+                  count: _onboardingScreens.length,
+                  onDotClicked: (index) {
+                    _pageController.animateToPage(
+                      index,
+                      duration: Durations.long2,
+                      curve: Curves.linear,
+                    );
+                  },
+                  effect: const SwapEffect(
+                    type: SwapType.yRotation,
+                    activeDotColor: Color(0xFF07FC49),
+                    dotColor: Color(0xFFFFFFFF),
+                    strokeWidth: 2.0,
+                    spacing: 14,
+                    paintStyle: PaintingStyle.stroke,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ));
+                Expanded(
+                  child: SizedBox(
+                    child: PageView(
+                      controller: _pageController,
+                      children: _onboardingScreens,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+    );
   }
 }
