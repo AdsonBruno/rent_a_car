@@ -46,6 +46,16 @@ class OnboardingController {
     );
   }
 
+  Future<void> completeOnboarding(BuildContext context) async {
+    await _appUsageModel.setFisrtUseCompleted();
+
+    if (!context.mounted) {
+      return;
+    }
+
+    Navigator.pushNamed(context, AppRoutes.home);
+  }
+
   void dispose() {
     pageController.dispose();
   }

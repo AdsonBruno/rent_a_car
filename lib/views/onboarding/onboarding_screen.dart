@@ -62,11 +62,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             title: data.title,
                             description: data.description,
                             buttonText: data.buttonText,
-                            onPressed: () {
+                            onPressed: () async {
                               if (index ==
                                   onboardingController.onboardingData.length -
                                       1) {
-                                AppRoutes.home;
+                                await onboardingController
+                                    .completeOnboarding(context);
                               }
                               onboardingController.pageController.nextPage(
                                   duration: const Duration(milliseconds: 500),
