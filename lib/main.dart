@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
+import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
 import 'package:rental_of_vehicle/views/onboarding/onboarding_screen.dart';
 
 void main() {
@@ -24,7 +25,8 @@ class _MyAppState extends State<MyApp> {
       ),
       debugShowCheckedModeBanner: false,
       color: const Color(0xFF04662b),
-      home: const OnboardingScreen(),
+      initialRoute: AppRoutes.onborading,
+      routes: AppRoutes.routes,
     );
   }
 }

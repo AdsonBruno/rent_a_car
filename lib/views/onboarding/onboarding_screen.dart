@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
+import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
 import 'package:rental_of_vehicle/views/widgets/onboarding_widgets/onboarding_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -34,7 +35,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       description:
           'Esolha o grupo de carros que mais te agrada e que atenda as suas necessidades.',
       buttonText: 'Entrar',
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, AppRoutes.home);
+      },
     ),
   ];
   @override
