@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
-import 'package:rental_of_vehicle/views/onboarding/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());

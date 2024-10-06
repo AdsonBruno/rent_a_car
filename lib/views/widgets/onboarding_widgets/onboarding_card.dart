@@ -43,12 +43,15 @@ class OnboardingCard extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: AppColors.white,
-            fontSize: 16,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            description,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: AppColors.white,
+              fontSize: 16,
+            ),
           ),
         ),
         const SizedBox(height: 10),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rental_of_vehicle/controllers/onboarding_controllers/onboarding_controller.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
 import 'package:rental_of_vehicle/views/widgets/onboarding_widgets/onboarding_card.dart';
@@ -12,34 +13,13 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  static final PageController _pageController = PageController(initialPage: 0);
+  final OnboardingController onboardingController = OnboardingController();
+  @override
+  void dispose() {
+    onboardingController.dispose();
+    super.dispose();
+  }
 
-  final List<Widget> _onboardingScreens = [
-    OnboardingCard(
-      image: 'assets/images/image_onboarding_1.jpg',
-      title: 'Bem-vindo(a) à Loca Car',
-      description:
-          'Com a Loca Car você não se preocupa com a burocracia de revisar e checar todo o veículo, cuidamos disso para você viajar sem preocupações',
-      buttonText: 'Próximo',
-      onPressed: () {
-        _pageController.animateToPage(
-          1,
-          duration: Durations.long2,
-          curve: Curves.linear,
-        );
-      },
-    ),
-    OnboardingCard(
-      image: 'assets/images/onboarding_2.png',
-      title: 'Vários modelos de veículos para seu gosto',
-      description:
-          'Esolha o grupo de carros que mais te agrada e que atenda as suas necessidades.',
-      buttonText: 'Entrar',
-      onPressed: () {
-        Navigator.pushReplacementNamed(context, AppRoutes.home);
-      },
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -52,10 +32,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 SmoothPageIndicator(
-                  controller: _pageController,
-                  count: _onboardingScreens.length,
+                  controller: onboardingController.pageController,
+                  count: onboardingController.onboardingData.length,
                   onDotClicked: (index) {
-                    _pageController.animateToPage(
+                    onboardingController.pageController.animateToPage(
                       index,
                       duration: Durations.long2,
                       curve: Curves.linear,
@@ -72,9 +52,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 Expanded(
                   child: SizedBox(
-                    child: PageView(
-                      controller: _pageController,
-                      children: _onboardingScreens,
+                    child: PageView.builder(
+                      controller: onboardingController.pageController,
+                      itemCount: onboardingController.onboardingData.length,
+                      itemBuilder: (context, index) {
+                        final data = onboardingController.onboardingData[index];
+                        return OnboardingCard(
+                            image: data.image,
+                            title: data.title,
+                            description: data.description,
+                            buttonText: data.buttonText,
+                            onPressed: () {
+                              if (index ==
+                                  onboardingController.onboardingData.length -
+                                      1) {
+                                AppRoutes.home;
+                              }
+                              onboardingController.pageController.nextPage(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
+                            });
+                      },
                     ),
                   ),
                 ),
