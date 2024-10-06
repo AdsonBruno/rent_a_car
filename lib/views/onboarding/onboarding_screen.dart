@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rental_of_vehicle/controllers/onboarding_controllers/onboarding_controller.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
-import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
 import 'package:rental_of_vehicle/views/widgets/onboarding_widgets/onboarding_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
