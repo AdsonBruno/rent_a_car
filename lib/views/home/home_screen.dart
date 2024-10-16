@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rental_of_vehicle/views/home/widgets/reservation_history_card.dart';
 import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
-import 'package:rental_of_vehicle/views/widgets/card/dashed_line_painter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,91 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Center(
-              child: Material(
-                elevation: 50,
-                shadowColor: Colors.grey.withOpacity(0.5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Container(
-                  height: 153,
-                  width: 388,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.green,
-                  ),
-                  child: Stack(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 30, top: 19),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Olá, Adson',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: AppColors.white,
-                                fontFamily: 'Inter',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            SizedBox(height: 17),
-                            Row(
-                              children: [
-                                Text(
-                                  'Reservas: ',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: AppColors.white,
-                                    fontFamily: 'Inter',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  'No momento você não possui reservas',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: AppColors.white,
-                                    fontFamily: 'Inter',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        top: 108.5,
-                        left: 27.5,
-                        right: 27.5,
-                        child: CustomPaint(
-                          size: const Size(400, 1),
-                          painter: DashedLinePainter(),
-                        ),
-                      ),
-                      const Positioned(
-                        top: 120,
-                        left: 104,
-                        right: 104,
-                        child: Text(
-                          'HISTÓRICO DE RESERVAS',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontFamily: 'Inter',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+            const Center(
+              child: ReservationHistoryCard(
+                title: 'HISTÓRICO DE RESERVAS',
+                welcome: 'Olá, Fulano',
+                keyStatusReservation: 'Reservas: ',
+                statusReservation: 'No momento você não possui reservas',
               ),
             ),
             const SizedBox(height: 65),
