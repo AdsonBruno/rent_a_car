@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rental_of_vehicle/views/core/app_colors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rental_of_vehicle/views/home/widgets/reservation_history_card.dart';
-import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
+import 'package:rental_of_vehicle/views/widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dart';
+import 'package:rental_of_vehicle/views/widgets/button/icon_text_button_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -40,46 +39,28 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 65),
-            TextButton(
+            IconTextButtonWidget(
+              iconPath: 'assets/icons/person_icon.svg',
+              buttonName: 'Dados pessoais',
               onPressed: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    SvgPicture.asset('assets/icons/person_icon.svg'),
-                    const SizedBox(width: 24.17),
-                    const Text('Dados pessoais'),
-                  ],
-                ),
-              ),
             ),
             const Divider(
               color: Color(0xFFB1ABAB),
               thickness: 1.0,
             ),
-            TextButton(
+            IconTextButtonWidget(
+              iconPath: 'assets/icons/address_icon.svg',
+              buttonName: 'Endereço',
               onPressed: () {},
-              child: Row(
-                children: [
-                  SvgPicture.asset('assets/icons/address_icon.svg'),
-                  const SizedBox(width: 14),
-                  const Text('Endereço'),
-                ],
-              ),
             ),
             const Divider(
               color: Color(0xFFB1ABAB),
               thickness: 1.0,
             ),
-            TextButton(
+            IconTextButtonWidget(
+              iconPath: 'assets/icons/car.svg',
+              buttonName: 'Locações',
               onPressed: () {},
-              child: Row(
-                children: [
-                  SvgPicture.asset('assets/icons/car.svg'),
-                  const SizedBox(width: 14),
-                  const Text('Locações'),
-                ],
-              ),
             ),
             const Divider(
               color: Color(0xFFB1ABAB),
@@ -88,46 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            child: BottomAppBar(
-              color: AppColors.darkLeafGreen,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ButtonWidget(
-                    icon: 'assets/icons/key_icon.svg',
-                    nameButton: 'RESERVAS',
-                    onPressed: () {},
-                  ),
-                  ButtonWidget(
-                    icon: 'assets/icons/person_icon.svg',
-                    nameButton: 'PERFIL',
-                    onPressed: () {},
-                  ),
-                  ButtonWidget(
-                    icon: 'assets/icons/home_icon.svg',
-                    nameButton: 'INÍCIO',
-                    onPressed: () {},
-                    color: AppColors.greenSelected,
-                  ),
-                  ButtonWidget(
-                    icon: 'assets/icons/history_icon.svg',
-                    nameButton: 'HISTÓRICO',
-                    onPressed: () {},
-                  ),
-                  ButtonWidget(
-                    icon: 'assets/icons/exit_icon.svg',
-                    nameButton: 'SAIR',
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+        bottomNavigationBar: const BottomNavigationBarWidget(currentIndex: 2),
       ),
     );
   }
