@@ -41,44 +41,6 @@ class BaseCardWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: children,
-                // children: [
-                //   children,
-                // Text(
-                //   'Olá, Adson',
-                //   textAlign: TextAlign.left,
-                //   style: TextStyle(
-                //     color: AppColors.white,
-                //     fontFamily: 'Inter',
-                //     fontSize: 14,
-                //     fontWeight: FontWeight.w400,
-                //   ),
-                // ),
-                // const SizedBox(height: 17),
-                // Row(
-                //   children: [
-                //     Text(
-                //       'Reservas: ',
-                //       textAlign: TextAlign.left,
-                //       style: TextStyle(
-                //         color: AppColors.white,
-                //         fontFamily: 'Inter',
-                //         fontSize: 14,
-                //         fontWeight: FontWeight.w600,
-                //       ),
-                //     ),
-                //     Text(
-                //       'No momento você não possui reservas',
-                //       textAlign: TextAlign.left,
-                //       style: TextStyle(
-                //         color: AppColors.white,
-                //         fontFamily: 'Inter',
-                //         fontSize: 14,
-                //         fontWeight: FontWeight.w300,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // ],
               ),
             ),
             Positioned(
