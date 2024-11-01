@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:rental_of_vehicle/controllers/bottom_navigation/bottom_navigation_controller.dart';
 
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final int currentIndex;
+  final BottomNavigationController controller;
 
-  const BottomNavigationBarWidget({
+  BottomNavigationBarWidget({
     super.key,
     required this.currentIndex,
-  });
+  }) : controller = BottomNavigationController(GlobalKey<NavigatorState>());
 
   @override
   Widget build(BuildContext context) {

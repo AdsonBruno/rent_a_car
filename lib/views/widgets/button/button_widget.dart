@@ -24,7 +24,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: widget.onPressed,
       icon: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
