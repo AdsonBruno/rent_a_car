@@ -46,16 +46,15 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 color: currentIndex == 2
                     ? AppColors.greenSelected
                     : AppColors.white,
-                onPressed: () {},
+                onPressed: () => controller.navigateTo(context, 2),
               ),
               ButtonWidget(
-                icon: 'assets/icons/history_icon.svg',
-                nameButton: 'HISTÓRICO',
-                color: currentIndex == 3
-                    ? AppColors.greenSelected
-                    : AppColors.white,
-                onPressed: () {},
-              ),
+                  icon: 'assets/icons/history_icon.svg',
+                  nameButton: 'HISTÓRICO',
+                  color: currentIndex == 3
+                      ? AppColors.greenSelected
+                      : AppColors.white,
+                  onPressed: () => controller.navigateTo(context, 3)),
               ButtonWidget(
                 icon: 'assets/icons/exit_icon.svg',
                 nameButton: 'SAIR',
