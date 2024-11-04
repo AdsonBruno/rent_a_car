@@ -10,51 +10,57 @@ class HistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            appBar: AppBar(
+              title: const Padding(
+                  padding: EdgeInsets.only(
+                    left: 74,
+                  ),
+                  child: Text(
+                    'Minhas Locações',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 14,
+                      color: AppColors.black,
+                    ),
+                  )),
+            ),
             body: const SingleChildScrollView(
               child: Column(
                 children: [
                   Center(
-                    child: Text(
-                      'Minhas Locações',
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        color: AppColors.black,
-                      ),
+                    child: BaseCardWidget(
+                      title: 'Locação finalizada',
+                      children: [
+                        Text(
+                          'Devolução',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(height: 9),
+                        Text(
+                          'AGÊNCIA CENTRO - ARAPIRACA - AL',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          '05/04/2024',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  BaseCardWidget(
-                    title: 'Locação finalizada',
-                    children: [
-                      Text(
-                        'Devolução',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(height: 9),
-                      Text(
-                        'AGÊNCIA CENTRO - ARAPIRACA - AL',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        '05/04/2024',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
                   ),
                   SizedBox(height: 20),
                   BaseCardWidget(

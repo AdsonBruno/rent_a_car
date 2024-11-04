@@ -27,46 +27,49 @@ class BaseCardWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),
-      child: Container(
-        height: height ?? 153,
-        width: width ?? 388,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: AppColors.green,
-        ),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 30, top: 19),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: children,
-              ),
-            ),
-            Positioned(
-              top: 108.5,
-              left: 27.5,
-              right: 27.5,
-              child: CustomPaint(
-                size: const Size(400, 1),
-                painter: DashedLinePainter(),
-              ),
-            ),
-            Positioned(
-              top: 120,
-              left: 104,
-              right: 104,
-              child: Text(
-                title,
-                style: const TextStyle(
-                  color: AppColors.white,
-                  fontFamily: 'Inter',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w800,
+      child: InkWell(
+        onTap: () => {},
+        child: Ink(
+          height: height ?? 153,
+          width: width ?? 388,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: AppColors.green,
+          ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 30, top: 19),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: children,
                 ),
               ),
-            )
-          ],
+              Positioned(
+                top: 108.5,
+                left: 27.5,
+                right: 27.5,
+                child: CustomPaint(
+                  size: const Size(400, 1),
+                  painter: DashedLinePainter(),
+                ),
+              ),
+              Positioned(
+                top: 120,
+                left: 104,
+                right: 104,
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    color: AppColors.white,
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
