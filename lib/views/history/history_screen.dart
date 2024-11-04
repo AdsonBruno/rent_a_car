@@ -29,7 +29,7 @@ class HistoryScreen extends StatelessWidget {
                 children: [
                   Center(
                     child: BaseCardWidget(
-                      title: 'Locação finalizada',
+                      title: 'DETALHES DA RESERVA',
                       children: [
                         Text(
                           'Devolução',
@@ -64,7 +64,7 @@ class HistoryScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   BaseCardWidget(
-                    title: 'Locação finalizada',
+                    title: 'DETALHES DA RESERVA',
                     children: [
                       Text(
                         'Devolução',
@@ -98,7 +98,7 @@ class HistoryScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   BaseCardWidget(
-                    title: 'Locação finalizada',
+                    title: 'DETALHES DA RESERVA',
                     children: [
                       Text(
                         'Devolução',
@@ -132,7 +132,7 @@ class HistoryScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   BaseCardWidget(
-                    title: 'Locação finalizada',
+                    title: 'DETALHES DA RESERVA',
                     children: [
                       Text(
                         'Devolução',
