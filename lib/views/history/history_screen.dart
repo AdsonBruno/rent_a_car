@@ -24,13 +24,13 @@ class HistoryScreen extends StatelessWidget {
                     ),
                   )),
             ),
-            body: const SingleChildScrollView(
+            body: SingleChildScrollView(
               child: Column(
                 children: [
                   Center(
                     child: BaseCardWidget(
                       title: 'DETALHES DA RESERVA',
-                      children: [
+                      children: const [
                         Text(
                           'Devolução',
                           style: TextStyle(
@@ -62,10 +62,10 @@ class HistoryScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   BaseCardWidget(
                     title: 'DETALHES DA RESERVA',
-                    children: [
+                    children: const [
                       Text(
                         'Devolução',
                         style: TextStyle(
@@ -96,10 +96,10 @@ class HistoryScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   BaseCardWidget(
                     title: 'DETALHES DA RESERVA',
-                    children: [
+                    children: const [
                       Text(
                         'Devolução',
                         style: TextStyle(
@@ -130,10 +130,10 @@ class HistoryScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   BaseCardWidget(
                     title: 'DETALHES DA RESERVA',
-                    children: [
+                    children: const [
                       Text(
                         'Devolução',
                         style: TextStyle(
@@ -164,7 +164,7 @@ class HistoryScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
