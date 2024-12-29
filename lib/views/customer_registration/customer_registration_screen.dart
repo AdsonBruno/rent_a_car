@@ -172,7 +172,8 @@ class _CustomerRegistrationScreenState
                 ),
                 const SizedBox(height: 60),
                 Center(
-                    child: ButtonWidget(nameButton: 'Teste', onPressed: () {})),
+                    child:
+                        ButtonWidget(nameButton: 'Próximo', onPressed: () {})),
                 const SizedBox(height: 60),
               ],
             ),

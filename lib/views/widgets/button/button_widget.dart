@@ -20,9 +20,10 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: enable ? onPressed : null,
-      child: Container(
+      borderRadius: BorderRadius.circular(8),
+      child: Ink(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 35),
         decoration: BoxDecoration(
           color: enable ? (color ?? AppColors.green) : AppColors.lightGray,
