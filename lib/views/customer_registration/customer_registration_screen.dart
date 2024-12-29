@@ -1,3 +1,5 @@
+import "dart:typed_data";
+
 import "package:flutter/material.dart";
 import "package:rental_of_vehicle/views/core/app_colors.dart";
 import "package:rental_of_vehicle/views/widgets/button/button_widget.dart";
@@ -96,6 +98,7 @@ class _CustomerRegistrationScreenState
                   onTap: () => _showDocumentTypeSelector(context),
                 ),
                 const TextField(
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelText: 'Número do documento',
                     labelStyle: TextStyle(
@@ -149,6 +152,7 @@ class _CustomerRegistrationScreenState
                   ),
                 ),
                 const TextField(
+                  keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     labelText: 'Celular',
                     labelStyle: TextStyle(
@@ -160,6 +164,7 @@ class _CustomerRegistrationScreenState
                   ),
                 ),
                 const TextField(
+                  keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     labelText: 'Confirmar celular',
                     labelStyle: TextStyle(
