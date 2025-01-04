@@ -13,4 +13,6 @@ class AppColors {
   static const Color pinkishGray = Color(0xFFBDB5B5);
 
   static const Color black = Color(0xFF000000);
+
+  static const Color red700 = Color(0xFFB71C1C);
 }
