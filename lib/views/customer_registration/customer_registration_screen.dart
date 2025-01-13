@@ -1,4 +1,7 @@
 import "package:flutter/material.dart";
+import "package:rental_of_vehicle/controllers/customer/customer_validation_controller.dart";
+import "package:rental_of_vehicle/models/customer_registration_models/customer_model.dart";
+import "package:rental_of_vehicle/models/customer_registration_models/customer_validation_model.dart";
 import "package:rental_of_vehicle/views/core/app_colors.dart";
 import "package:rental_of_vehicle/views/widgets/button/button_widget.dart";
 
@@ -12,19 +15,13 @@ class CustomerRegistrationScreen extends StatefulWidget {
 
 class _CustomerRegistrationScreenState
     extends State<CustomerRegistrationScreen> {
-  final _formKey = GlobalKey<FormState>();
+  final controller = CustomerValidationController();
   int currentStep = 0;
   String? selectedDocumentType;
   String? selectedGender;
   String? genderError;
   bool isNameError = false;
-
-  final name = TextEditingController();
-  final country = TextEditingController();
-  final documentType = TextEditingController();
-  final documentNumber = TextEditingController();
-  final phoneNumber = TextEditingController();
-  final phoneNumberConfirmation = TextEditingController();
+  bool _showGenderError = false;
 
   final List<String> genders = [
     'Masculino',
@@ -52,7 +49,7 @@ class _CustomerRegistrationScreenState
           padding: const EdgeInsets.only(left: 21, right: 21),
           child: SingleChildScrollView(
             child: Form(
-              key: _formKey,
+              key: controller.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,7 +62,7 @@ class _CustomerRegistrationScreenState
                     ),
                   ),
                   TextFormField(
-                    controller: name,
+                    controller: controller.nameController,
                     decoration: InputDecoration(
                       labelText: 'Nome completo',
                       labelStyle: TextStyle(
@@ -75,20 +72,10 @@ class _CustomerRegistrationScreenState
                         color: isNameError ? AppColors.red700 : AppColors.green,
                       ),
                     ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        setState(() {
-                          isNameError = true;
-                        });
-                        return 'Por favor, informe o seu nome completo*';
-                      }
-                      setState(() {
-                        isNameError = false;
-                      });
-                      return null;
-                    },
+                    validator: CustomerValidationModel.validateName,
                   ),
                   TextFormField(
+                    controller: controller.countryController,
                     decoration: InputDecoration(
                       labelText: 'País de nascimento',
                       labelStyle: TextStyle(
@@ -98,21 +85,10 @@ class _CustomerRegistrationScreenState
                         color: isNameError ? AppColors.red700 : AppColors.green,
                       ),
                     ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        setState(() {
-                          isNameError = true;
-                        });
-                        return 'Por favor, informe seu país de nascimento*';
-                      }
-                      setState(() {
-                        isNameError = false;
-                      });
-                      return null;
-                    },
+                    validator: CustomerValidationModel.validateCountry,
                   ),
                   TextFormField(
-                    controller: documentType,
+                    controller: controller.documentTypeController,
                     decoration: InputDecoration(
                       labelText: 'Tipo de documento',
                       labelStyle: TextStyle(
@@ -122,19 +98,13 @@ class _CustomerRegistrationScreenState
                         color: isNameError ? AppColors.red700 : AppColors.green,
                       ),
                     ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        isNameError = true;
-                        return 'Por favor, informe o tipo de documento*';
-                      }
-                      isNameError = false;
-                      return null;
-                    },
+                    validator: CustomerValidationModel.validateDocumentType,
                     readOnly: true,
                     onTap: () => _showDocumentTypeSelector(context),
                   ),
                   TextFormField(
                     keyboardType: TextInputType.number,
+                    controller: controller.documentNumberController,
                     decoration: InputDecoration(
                       labelText: 'Número do documento',
                       labelStyle: TextStyle(
@@ -144,14 +114,7 @@ class _CustomerRegistrationScreenState
                         color: isNameError ? AppColors.red700 : AppColors.green,
                       ),
                     ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        isNameError = true;
-                        return 'Por favor, informe o número do documento*';
-                      }
-                      isNameError = false;
-                      return null;
-                    },
+                    validator: CustomerValidationModel.validateDocumentNumber,
                   ),
                   const SizedBox(height: 12),
                   const Text(
@@ -186,11 +149,11 @@ class _CustomerRegistrationScreenState
                                         },
                                       ),
                                       value: gender,
-                                      groupValue: selectedGender,
+                                      groupValue: controller.selectGender,
                                       onChanged: (value) {
                                         setState(() {
-                                          selectedGender = value;
-                                          genderError = null;
+                                          controller.setGender(gender);
+                                          _showGenderError = false;
                                         });
                                       })
                                 ],
@@ -198,16 +161,17 @@ class _CustomerRegistrationScreenState
                           .toList(),
                     ),
                   ),
-                  if (genderError != null)
+                  if (_showGenderError && controller.validateGender() != null)
                     Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                          genderError!,
+                          controller.validateGender()!,
                           style: const TextStyle(
                               color: AppColors.red700, fontSize: 13),
                         )),
                   TextFormField(
                     keyboardType: TextInputType.phone,
+                    controller: controller.phoneNumberController,
                     decoration: InputDecoration(
                       labelText: 'Celular',
                       labelStyle: TextStyle(
@@ -217,17 +181,11 @@ class _CustomerRegistrationScreenState
                         color: isNameError ? AppColors.red700 : AppColors.green,
                       ),
                     ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        isNameError = true;
-                        return 'Por favor, informe o número de celular*';
-                      }
-                      isNameError = false;
-                      return null;
-                    },
+                    validator: CustomerValidationModel.validatePhoneNumber,
                   ),
                   TextFormField(
                     keyboardType: TextInputType.phone,
+                    controller: controller.phoneNumberConfirmationController,
                     decoration: InputDecoration(
                       labelText: 'Confirmar celular',
                       labelStyle: TextStyle(
@@ -237,21 +195,19 @@ class _CustomerRegistrationScreenState
                         color: isNameError ? AppColors.red700 : AppColors.green,
                       ),
                     ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        isNameError = true;
-                        return 'Por favor, confirme o número do celular*';
-                      }
-                      isNameError = false;
-                      return null;
-                    },
+                    validator: (_) =>
+                        controller.validatePhoneNumberConfirmation(),
                   ),
                   const SizedBox(height: 60),
                   Center(
                       child: ButtonWidget(
                           nameButton: 'Próximo',
                           onPressed: () {
-                            validateForm();
+                            controller.validateForm();
+                            setState(() {
+                              _showGenderError =
+                                  controller.validateGender() != null;
+                            });
                           })),
                   const SizedBox(height: 60),
                 ],
@@ -308,19 +264,8 @@ class _CustomerRegistrationScreenState
 
     if (result != null) {
       setState(() {
-        documentType.text = result;
+        controller.documentTypeController.text;
       });
-    }
-  }
-
-  validateForm() {
-    setState(() {
-      genderError = selectedGender == null ? 'Selecione um gênero*' : null;
-    });
-    if (_formKey.currentState!.validate()) {
-      print('válido');
-    } else {
-      print('inválido');
     }
   }
 }
