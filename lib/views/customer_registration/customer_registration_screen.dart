@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 import "package:rental_of_vehicle/controllers/customer/customer_validation_controller.dart";
-import "package:rental_of_vehicle/models/customer_registration_models/customer_model.dart";
 import "package:rental_of_vehicle/models/customer_registration_models/customer_validation_model.dart";
 import "package:rental_of_vehicle/views/core/app_colors.dart";
 import "package:rental_of_vehicle/views/widgets/button/button_widget.dart";
+import "package:rental_of_vehicle/views/widgets/text_form_field_widget/custom_text_form_field_widget.dart";
 
 class CustomerRegistrationScreen extends StatefulWidget {
   const CustomerRegistrationScreen({super.key});
@@ -61,59 +61,27 @@ class _CustomerRegistrationScreenState
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  TextFormField(
+                  CustomTextFormFieldWidget(
                     controller: controller.nameController,
-                    decoration: InputDecoration(
-                      labelText: 'Nome completo',
-                      labelStyle: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300,
-                        color: isNameError ? AppColors.red700 : AppColors.green,
-                      ),
-                    ),
+                    labelText: 'Nome completo',
                     validator: CustomerValidationModel.validateName,
                   ),
-                  TextFormField(
+                  CustomTextFormFieldWidget(
                     controller: controller.countryController,
-                    decoration: InputDecoration(
-                      labelText: 'País de nascimento',
-                      labelStyle: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300,
-                        color: isNameError ? AppColors.red700 : AppColors.green,
-                      ),
-                    ),
+                    labelText: 'País de nascimento',
                     validator: CustomerValidationModel.validateCountry,
                   ),
-                  TextFormField(
+                  CustomTextFormFieldWidget(
                     controller: controller.documentTypeController,
-                    decoration: InputDecoration(
-                      labelText: 'Tipo de documento',
-                      labelStyle: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300,
-                        color: isNameError ? AppColors.red700 : AppColors.green,
-                      ),
-                    ),
+                    labelText: 'Tipo de documento',
                     validator: CustomerValidationModel.validateDocumentType,
                     readOnly: true,
                     onTap: () => _showDocumentTypeSelector(context),
                   ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
+                  CustomTextFormFieldWidget(
+                    keyBoardType: TextInputType.number,
                     controller: controller.documentNumberController,
-                    decoration: InputDecoration(
-                      labelText: 'Número do documento',
-                      labelStyle: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300,
-                        color: isNameError ? AppColors.red700 : AppColors.green,
-                      ),
-                    ),
+                    labelText: 'Número de documento',
                     validator: CustomerValidationModel.validateDocumentNumber,
                   ),
                   const SizedBox(height: 12),
@@ -169,32 +137,15 @@ class _CustomerRegistrationScreenState
                           style: const TextStyle(
                               color: AppColors.red700, fontSize: 13),
                         )),
-                  TextFormField(
-                    keyboardType: TextInputType.phone,
+                  CustomTextFormFieldWidget(
+                    keyBoardType: TextInputType.phone,
                     controller: controller.phoneNumberController,
-                    decoration: InputDecoration(
-                      labelText: 'Celular',
-                      labelStyle: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300,
-                        color: isNameError ? AppColors.red700 : AppColors.green,
-                      ),
-                    ),
+                    labelText: 'Celular',
                     validator: CustomerValidationModel.validatePhoneNumber,
                   ),
-                  TextFormField(
-                    keyboardType: TextInputType.phone,
+                  CustomTextFormFieldWidget(
                     controller: controller.phoneNumberConfirmationController,
-                    decoration: InputDecoration(
-                      labelText: 'Confirmar celular',
-                      labelStyle: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300,
-                        color: isNameError ? AppColors.red700 : AppColors.green,
-                      ),
-                    ),
+                    labelText: 'Confirmar celular',
                     validator: (_) =>
                         controller.validatePhoneNumberConfirmation(),
                   ),
