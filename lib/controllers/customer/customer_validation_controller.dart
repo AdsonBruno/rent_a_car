@@ -11,10 +11,17 @@ class CustomerValidationController {
   final phoneNumberConfirmationController = TextEditingController();
   final genderController = TextEditingController();
 
+  bool showGenderError = false;
+
   String? selectGender;
 
   bool validateForm() {
     return formKey.currentState?.validate() ?? false;
+  }
+
+  bool updateGenderErrorState() {
+    showGenderError = validateGender() != null;
+    return showGenderError;
   }
 
   String? validatePhoneNumberConfirmation() {

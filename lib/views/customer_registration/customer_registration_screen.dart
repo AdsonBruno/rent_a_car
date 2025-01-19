@@ -157,7 +157,7 @@ class _CustomerRegistrationScreenState
                             controller.validateForm();
                             setState(() {
                               _showGenderError =
-                                  controller.validateGender() != null;
+                                  controller.updateGenderErrorState();
                             });
                           })),
                   const SizedBox(height: 60),
