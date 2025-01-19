@@ -3,6 +3,7 @@ import "package:rental_of_vehicle/controllers/customer/customer_validation_contr
 import "package:rental_of_vehicle/models/customer_registration_models/customer_validation_model.dart";
 import "package:rental_of_vehicle/views/core/app_colors.dart";
 import "package:rental_of_vehicle/views/widgets/button/button_widget.dart";
+import "package:rental_of_vehicle/views/widgets/slector_document_widget/document_type_selector_widget.dart";
 import "package:rental_of_vehicle/views/widgets/text_form_field_widget/custom_text_form_field_widget.dart";
 
 class CustomerRegistrationScreen extends StatefulWidget {
@@ -174,43 +175,8 @@ class _CustomerRegistrationScreenState
     final result = await showDialog<String>(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text(
-              'Selecione o tipo de documento',
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Inter',
-                color: AppColors.black,
-              ),
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  title: const Text(
-                    'CPF',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Inter',
-                      color: AppColors.black,
-                    ),
-                  ),
-                  onTap: () => Navigator.pop(context, 'CPF'),
-                ),
-                ListTile(
-                  title: const Text(
-                    'RG',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Inter',
-                      color: AppColors.black,
-                    ),
-                  ),
-                  onTap: () => Navigator.pop(context, 'RG'),
-                )
-              ],
-            ),
-          );
+          return const DocumentTypeSelectorDialogWidget(
+              documentTypes: ['CPF', 'RG']);
         });
 
     if (result != null) {
