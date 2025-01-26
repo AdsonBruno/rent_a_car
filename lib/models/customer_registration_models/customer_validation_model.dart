@@ -1,3 +1,5 @@
+import 'package:cpf_cnpj_validator/cpf_validator.dart';
+
 class CustomerValidationModel {
   static String? validateName(String? value) {
     if (value == null || value.isEmpty) {
@@ -20,11 +22,26 @@ class CustomerValidationModel {
     return null;
   }
 
-  static String? validateDocumentNumber(String? value) {
+  static String? validateDocumentNumber(String? value, String? documentType) {
     if (value == null || value.isEmpty) {
       return 'Por favor, informe o número do documento*';
     }
+
+    if (documentType == 'CPF') {
+      if (!CPFValidator.isValid(value)) {
+        return 'CPF inválido';
+      }
+    } else if (documentType == 'RG') {
+      final cleanedValue = value.replaceAll(RegExp(r'[^\d]'), '');
+      if (!isValidRG(cleanedValue)) {
+        return 'RG inválido';
+      }
+    }
     return null;
+  }
+
+  static bool isValidRG(String rg) {
+    return rg.length == 9 && RegExp(r'^\d{9}$').hasMatch(rg);
   }
 
   static String? validatePhoneNumber(String? value) {

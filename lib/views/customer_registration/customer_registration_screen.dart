@@ -83,7 +83,11 @@ class _CustomerRegistrationScreenState
                     keyBoardType: TextInputType.number,
                     controller: controller.documentNumberController,
                     labelText: 'Número de documento',
-                    validator: CustomerValidationModel.validateDocumentNumber,
+                    validator: (value) =>
+                        CustomerValidationModel.validateDocumentNumber(
+                      value,
+                      controller.documentTypeController.text,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   const Text(
@@ -181,7 +185,7 @@ class _CustomerRegistrationScreenState
 
     if (result != null) {
       setState(() {
-        controller.documentTypeController.text;
+        controller.documentTypeController.text = result;
       });
     }
   }
