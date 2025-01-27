@@ -90,12 +90,13 @@ class _CustomerRegistrationScreenState
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const Text(
+                  Text(
                     'Sexo',
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 14,
-                      color: AppColors.green,
+                      color:
+                          _showGenderError ? AppColors.red700 : AppColors.green,
                       fontWeight: FontWeight.w300,
                     ),
                   ),
@@ -106,29 +107,33 @@ class _CustomerRegistrationScreenState
                       children: genders
                           .map((gender) => Column(
                                 children: [
-                                  Text(gender),
-                                  Radio<String>(
-                                      activeColor: isNameError
+                                  Text(
+                                    gender,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Inter',
+                                      color: _showGenderError
                                           ? AppColors.red700
                                           : AppColors.green,
-                                      fillColor:
-                                          MaterialStateProperty.resolveWith(
-                                        (states) {
-                                          if (!states.contains(
-                                              MaterialState.selected)) {
-                                            return AppColors.greenSelected;
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                      value: gender,
-                                      groupValue: controller.selectGender,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          controller.setGender(gender);
-                                          _showGenderError = false;
-                                        });
-                                      })
+                                    ),
+                                  ),
+                                  Radio<String>(
+                                    activeColor: AppColors.green,
+                                    value: gender,
+                                    fillColor: MaterialStateProperty
+                                        .resolveWith<Color>(
+                                      (states) => _showGenderError
+                                          ? AppColors.red700
+                                          : AppColors.green,
+                                    ),
+                                    groupValue: controller.selectGender,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        controller.setGender(value);
+                                        _showGenderError = false;
+                                      });
+                                    },
+                                  )
                                 ],
                               ))
                           .toList(),
@@ -159,10 +164,10 @@ class _CustomerRegistrationScreenState
                       child: ButtonWidget(
                           nameButton: 'Próximo',
                           onPressed: () {
-                            controller.validateForm();
                             setState(() {
                               _showGenderError =
                                   controller.updateGenderErrorState();
+                              controller.validateForm();
                             });
                           })),
                   const SizedBox(height: 60),
