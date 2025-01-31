@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import "package:rental_of_vehicle/controllers/customer/customer_validation_controller.dart";
 import "package:rental_of_vehicle/models/customer_registration_models/customer_validation_model.dart";
-import "package:rental_of_vehicle/views/core/app_colors.dart";
 import "package:rental_of_vehicle/views/widgets/button/button_widget.dart";
+import "package:rental_of_vehicle/views/widgets/button/radio_button_group_widget.dart";
 import "package:rental_of_vehicle/views/widgets/slector_document_widget/document_type_selector_widget.dart";
 import "package:rental_of_vehicle/views/widgets/text_form_field_widget/custom_text_form_field_widget.dart";
 
@@ -90,63 +90,19 @@ class _CustomerRegistrationScreenState
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text(
-                    'Sexo',
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 14,
-                      color:
-                          _showGenderError ? AppColors.red700 : AppColors.green,
-                      fontWeight: FontWeight.w300,
-                    ),
+                  CustomRadioGroup(
+                    title: 'Sexo',
+                    options: genders,
+                    selectedOption: controller.selectGender,
+                    showError: _showGenderError,
+                    onOptionSelected: (value) {
+                      setState(() {
+                        controller.selectGender!;
+                        _showGenderError = false;
+                      });
+                    },
+                    labelBuilder: (option) => option,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: genders
-                          .map((gender) => Column(
-                                children: [
-                                  Text(
-                                    gender,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      color: _showGenderError
-                                          ? AppColors.red700
-                                          : AppColors.green,
-                                    ),
-                                  ),
-                                  Radio<String>(
-                                    activeColor: AppColors.green,
-                                    value: gender,
-                                    fillColor: MaterialStateProperty
-                                        .resolveWith<Color>(
-                                      (states) => _showGenderError
-                                          ? AppColors.red700
-                                          : AppColors.green,
-                                    ),
-                                    groupValue: controller.selectGender,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        controller.setGender(value);
-                                        _showGenderError = false;
-                                      });
-                                    },
-                                  )
-                                ],
-                              ))
-                          .toList(),
-                    ),
-                  ),
-                  if (_showGenderError && controller.validateGender() != null)
-                    Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Text(
-                          controller.validateGender()!,
-                          style: const TextStyle(
-                              color: AppColors.red700, fontSize: 13),
-                        )),
                   CustomTextFormFieldWidget(
                     keyBoardType: TextInputType.phone,
                     controller: controller.phoneNumberController,
