@@ -17,6 +17,8 @@ class CustomerRegistrationScreen extends StatefulWidget {
 class _CustomerRegistrationScreenState
     extends State<CustomerRegistrationScreen> {
   final controller = CustomerValidationController();
+  final ValueNotifier<bool> isButtonEnable = ValueNotifier(false);
+
   int currentStep = 0;
   String? selectedDocumentType;
   String? selectedGender;
@@ -29,6 +31,40 @@ class _CustomerRegistrationScreenState
     'Feminino',
     'Outro',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    controller.nameController.addListener(_updateButtonState);
+    controller.countryController.addListener(_updateButtonState);
+    controller.documentTypeController.addListener(_updateButtonState);
+    controller.documentNumberController.addListener(_updateButtonState);
+    controller.phoneNumberController.addListener(_updateButtonState);
+    controller.phoneNumberConfirmationController
+        .addListener(_updateButtonState);
+  }
+
+  @override
+  void dispose() {
+    controller.nameController.removeListener(_updateButtonState);
+    controller.countryController.removeListener(_updateButtonState);
+    controller.documentTypeController.removeListener(_updateButtonState);
+    controller.documentNumberController.removeListener(_updateButtonState);
+    controller.phoneNumberController.removeListener(_updateButtonState);
+    controller.phoneNumberConfirmationController
+        .removeListener(_updateButtonState);
+    super.dispose();
+  }
+
+  void _updateButtonState() {
+    final isValid = controller.nameController.text.isNotEmpty &&
+        controller.documentTypeController.text.isNotEmpty &&
+        controller.documentNumberController.text.isNotEmpty &&
+        controller.phoneNumberController.text.isNotEmpty &&
+        controller.phoneNumberConfirmationController.text.isNotEmpty &&
+        controller.selectGender != null;
+    isButtonEnable.value = isValid;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +133,9 @@ class _CustomerRegistrationScreenState
                     showError: _showGenderError,
                     onOptionSelected: (value) {
                       setState(() {
-                        controller.selectGender!;
+                        controller.selectGender = value;
                         _showGenderError = false;
+                        _updateButtonState();
                       });
                     },
                     labelBuilder: (option) => option,
@@ -117,15 +154,27 @@ class _CustomerRegistrationScreenState
                   ),
                   const SizedBox(height: 60),
                   Center(
-                      child: ButtonWidget(
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: isButtonEnable,
+                      builder: (context, enable, child) {
+                        return ButtonWidget(
                           nameButton: 'Próximo',
+                          enable: enable,
                           onPressed: () {
                             setState(() {
                               _showGenderError =
-                                  controller.updateGenderErrorState();
-                              controller.validateForm();
+                                  controller.selectGender == null;
                             });
-                          })),
+
+                            if (controller.formKey.currentState?.validate() ??
+                                false) {
+                              controller.validateForm();
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 60),
                 ],
               ),
