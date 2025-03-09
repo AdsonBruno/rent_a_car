@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:rental_of_vehicle/controllers/customer/customer_validation_controller.dart";
+import "package:rental_of_vehicle/models/customer_registration_models/customer_data_model.dart";
 import "package:rental_of_vehicle/models/customer_registration_models/customer_validation_model.dart";
 import "package:rental_of_vehicle/views/widgets/button/button_widget.dart";
 import "package:rental_of_vehicle/views/widgets/button/radio_button_group_widget.dart";
@@ -18,7 +19,6 @@ class _CustomerRegistrationScreenState
     extends State<CustomerRegistrationScreen> {
   final controller = CustomerValidationController();
   final ValueNotifier<bool> isButtonEnable = ValueNotifier(false);
-
   int currentStep = 0;
   String? selectedDocumentType;
   String? selectedGender;
@@ -160,7 +160,7 @@ class _CustomerRegistrationScreenState
                         return ButtonWidget(
                           nameButton: 'Próximo',
                           enable: enable,
-                          onPressed: () {
+                          onPressed: () async {
                             setState(() {
                               _showGenderError =
                                   controller.selectGender == null;
@@ -169,6 +169,19 @@ class _CustomerRegistrationScreenState
                             if (controller.formKey.currentState?.validate() ??
                                 false) {
                               controller.validateForm();
+
+                              final customerData = CustomerData(
+                                  name: controller.nameController.text,
+                                  country: controller.countryController.text,
+                                  documentType:
+                                      controller.documentTypeController.text,
+                                  documentNumber:
+                                      controller.documentNumberController.text,
+                                  gender: controller.selectGender!,
+                                  phoneNumber:
+                                      controller.phoneNumberController.text);
+                              controller.navigateToNextpage(
+                                  context, customerData);
                             }
                           },
                         );

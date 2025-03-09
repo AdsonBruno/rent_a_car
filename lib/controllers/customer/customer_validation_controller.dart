@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rental_of_vehicle/models/customer_registration_models/customer_data_model.dart';
 import 'package:rental_of_vehicle/models/customer_registration_models/customer_validation_model.dart';
+import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
 
 class CustomerValidationController {
   final formKey = GlobalKey<FormState>();
@@ -37,5 +39,11 @@ class CustomerValidationController {
 
   String? validateGender() {
     return selectGender == null ? 'Selecione um gênero*' : null;
+  }
+
+  Future<void> navigateToNextpage(
+      BuildContext context, CustomerData? customerData) async {
+    Navigator.pushNamed(context, AppRoutes.loginRegistration,
+        arguments: customerData);
   }
 }
