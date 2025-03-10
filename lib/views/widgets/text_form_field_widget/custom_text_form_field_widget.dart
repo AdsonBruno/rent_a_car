@@ -8,6 +8,11 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final bool readOnly;
   final VoidCallback? onTap;
   final TextInputType keyBoardType;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final VoidCallback? onButtonTap;
+  final bool isPasswordField;
+  final bool? passwordIconPrefix;
 
   const CustomTextFormFieldWidget({
     super.key,
@@ -17,6 +22,11 @@ class CustomTextFormFieldWidget extends StatefulWidget {
     this.readOnly = false,
     this.onTap,
     this.keyBoardType = TextInputType.text,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.onButtonTap,
+    this.isPasswordField = false,
+    this.passwordIconPrefix = false,
   });
 
   @override
@@ -26,6 +36,7 @@ class CustomTextFormFieldWidget extends StatefulWidget {
 
 class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
   bool hasError = false;
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +45,7 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
       keyboardType: widget.keyBoardType,
       readOnly: widget.readOnly,
       onTap: widget.onTap,
+      obscureText: widget.isPasswordField ? !_isPasswordVisible : false,
       validator: (value) {
         final error = widget.validator?.call(value);
         setState(() {
@@ -52,7 +64,34 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: AppColors.darkLeafGreen),
         ),
+        prefixIcon: _buildPrefixIcon(),
+        suffixIcon: _buildSuffixIcon(),
       ),
     );
+  }
+
+  Widget? _buildPrefixIcon() {
+    if (widget.isPasswordField && widget.passwordIconPrefix == true) {
+      return _passwordVisibilityIcon();
+    }
+    return widget.prefixIcon;
+  }
+
+  Widget? _buildSuffixIcon() {
+    if (widget.isPasswordField && (widget.passwordIconPrefix != true)) {
+      return _passwordVisibilityIcon();
+    }
+    return widget.suffixIcon;
+  }
+
+  Widget _passwordVisibilityIcon() {
+    return IconButton(
+        onPressed: () {
+          setState(() {
+            _isPasswordVisible = !_isPasswordVisible;
+          });
+        },
+        icon:
+            Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off));
   }
 }
