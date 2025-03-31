@@ -171,15 +171,18 @@ class _CustomerRegistrationScreenState
                               controller.validateForm();
 
                               final customerData = CustomerData(
-                                  name: controller.nameController.text,
-                                  country: controller.countryController.text,
-                                  documentType:
-                                      controller.documentTypeController.text,
-                                  documentNumber:
-                                      controller.documentNumberController.text,
-                                  gender: controller.selectGender!,
-                                  phoneNumber:
-                                      controller.phoneNumberController.text);
+                                name: controller.nameController.text,
+                                country: controller.countryController.text,
+                                documentType:
+                                    controller.documentTypeController.text,
+                                documentNumber:
+                                    controller.documentNumberController.text,
+                                gender: controller.selectGender!,
+                                phoneNumber:
+                                    controller.phoneNumberController.text,
+                                email: controller.emailController.text,
+                              );
+
                               controller.navigateToNextpage(
                                   context, customerData);
                             }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rental_of_vehicle/controllers/customer/login_registration_controller.dart';
 import 'package:rental_of_vehicle/models/customer_registration_models/customer_data_model.dart';
+import 'package:rental_of_vehicle/models/customer_registration_models/user_data_model.dart';
 import 'package:rental_of_vehicle/models/login_registration_models/login_validation_model.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
@@ -115,6 +116,20 @@ class _LoginRegistrationScreenState extends State<LoginRegistrationScreen> {
                           onPressed: () {
                             if (controller.formKey.currentState?.validate() ??
                                 false) {
+                              if (customerData != null) {
+                                final userData = UserDataModel(
+                                  fullName: customerData!.name,
+                                  country: customerData!.country,
+                                  documentType: customerData!.documentType,
+                                  documentNumber: customerData!.documentNumber,
+                                  gender: customerData!.gender,
+                                  phoneNumber: customerData!.phoneNumber,
+                                  email: controller.emailController.text,
+                                );
+
+                                controller.navigateToNextPage(
+                                    context, userData);
+                              }
                               controller.validateForm();
                             }
                           },

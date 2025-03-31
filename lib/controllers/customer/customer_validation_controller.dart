@@ -11,6 +11,8 @@ class CustomerValidationController {
   final documentNumberController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final phoneNumberConfirmationController = TextEditingController();
+  final emailController = TextEditingController();
+  final emailConfirmationController = TextEditingController();
   final genderController = TextEditingController();
 
   bool showGenderError = false;

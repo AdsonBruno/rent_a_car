@@ -5,6 +5,7 @@ class CustomerData {
   final String documentNumber;
   final String gender;
   final String phoneNumber;
+  final String email;
 
   CustomerData({
     required this.name,
@@ -13,5 +14,6 @@ class CustomerData {
     required this.documentNumber,
     required this.gender,
     required this.phoneNumber,
+    required this.email,
   });
 }

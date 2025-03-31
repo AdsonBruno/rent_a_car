@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rental_of_vehicle/models/customer_registration_models/user_data_model.dart';
 import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
 
 class LoginRegistrationController {
@@ -12,7 +13,9 @@ class LoginRegistrationController {
     return formKey.currentState?.validate() ?? false;
   }
 
-  Future<void> navigateToNextPage(BuildContext context) async {
-    Navigator.pushNamed(context, AppRoutes.home);
+  Future<void> navigateToNextPage(
+      BuildContext context, UserDataModel userData) async {
+    Navigator.pushNamed(context, AppRoutes.confirmationRegistration,
+        arguments: userData);
   }
 }
