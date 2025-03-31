@@ -9,11 +9,11 @@ class DashedLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = dashColor ?? Colors.white
+      ..color = dashColor ?? AppColors.white
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
-    final Color effectiveColor = dashColor ?? Colors.white;
+    final Color effectiveColor = dashColor ?? AppColors.white;
     paint.color = effectiveColor;
     double dashWidth = 10;
     double dashSpace = 5;
