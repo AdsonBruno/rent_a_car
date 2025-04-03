@@ -39,6 +39,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   shared_preferences: ^2.2.3
   flutter_svg: ^2.0.10+1
+  cpf_cnpj_validator: ^2.0.0
 
 dev_dependencies:
   flutter_test:
