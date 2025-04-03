@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rental_of_vehicle/views/core/app_colors.dart';
 
 class ShowModalDialogWidget extends StatelessWidget {
   final String? image;
@@ -15,12 +14,12 @@ class ShowModalDialogWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (image != null)
-              Image.asset(image!,
-                  height: MediaQuery.of(context).size.height * 0.1, //100,
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  fit: BoxFit.fitWidth //100,
-                  ),
-            // const SizedBox(height: 10),
+              Image.asset(
+                image!,
+                height: MediaQuery.of(context).size.height * 0.1, //100,
+                width: MediaQuery.of(context).size.width * 0.1,
+                fit: BoxFit.fitWidth,
+              ),
             ...data.map(
               (text) => Text(
                 text,
