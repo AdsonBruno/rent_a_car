@@ -3,6 +3,7 @@ import 'package:rental_of_vehicle/models/customer_registration_models/user_data_
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
 import 'package:rental_of_vehicle/views/widgets/card/dashed_line_painter.dart';
+import 'package:rental_of_vehicle/views/widgets/modal/show_modal_widget.dart';
 
 class ConfirmationRegistrationScreen extends StatefulWidget {
   final UserDataModel userData;
@@ -46,7 +47,11 @@ class _ConfirmationRegistrationScreenState
               _buildDataTile('Número do telefone: ', userData.phoneNumber),
               _buildDataTile('Email: ', userData.email),
               const SizedBox(height: 20),
-              ButtonWidget(nameButton: 'Confirmar', onPressed: () {})
+              ButtonWidget(
+                  nameButton: 'Confirmar',
+                  onPressed: () {
+                    _showRegistrationConfirmation(context);
+                  })
             ],
           ),
         ),
@@ -90,5 +95,20 @@ class _ConfirmationRegistrationScreenState
         ],
       ),
     );
+  }
+
+  Future<void> _showRegistrationConfirmation(BuildContext context) async {
+    await showDialog<String>(
+        context: context,
+        builder: (BuildContext context) {
+          return const ShowModalDialogWidget(
+            image: 'assets/icons/success_icon.png',
+            data: [
+              'Parabéns!',
+              'Cadastro realizado com sucesso!',
+              'Agora você pode alugar um veículo!',
+            ],
+          );
+        });
   }
 }
