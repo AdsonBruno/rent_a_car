@@ -6,6 +6,7 @@ import 'package:rental_of_vehicle/views/customer_registration/login_registration
 import 'package:rental_of_vehicle/views/history/history_screen.dart';
 import 'package:rental_of_vehicle/views/home/home_screen.dart';
 import 'package:rental_of_vehicle/views/onboarding/onboarding_screen.dart';
+import 'package:rental_of_vehicle/views/login/login_screen.dart';
 
 import '../../customer_registration/confirmation_registrations_screen.dart';
 
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String history = '/history';
   static const String bookingDetail = '/booking_details';
   static const String confirmationRegistration = '/confirmation_registration';
+  static const String login = '/login';
 
   static Map<String, WidgetBuilder> routes = {
     onborading: (context) => const OnboardingScreen(),
@@ -29,5 +31,6 @@ class AppRoutes {
       final args = ModalRoute.of(context)!.settings.arguments as UserDataModel;
       return ConfirmationRegistrationScreen(userData: args);
     },
+    login: (context) => const LoginScreen()
   };
 }
