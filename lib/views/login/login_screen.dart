@@ -17,56 +17,73 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 19, top: 50, right: 19),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Olá!',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'Inter',
-                    color: AppColors.green,
-                  )),
-              const Text(
-                'Acesse sua conta ou cadastre-se',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w300,
-                  fontFamily: 'Inter',
-                ),
-              ),
-              const SizedBox(height: 100),
-              Card(
-                elevation: 7.0,
-                color: AppColors.white, //AppColors.black,
-                shadowColor: Colors.grey,
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      CustomTextFormFieldWidget(
-                        controller: controller.emailController,
-                        labelText: 'E-mail',
-                      ),
-                      const SizedBox(height: 30),
-                      CustomTextFormFieldWidget(
-                        controller: controller.passwordController,
-                        isPasswordField: true,
-                        labelText: 'Senha',
-                      ),
-                      const SizedBox(height: 56),
-                      ButtonWidget(nameButton: 'ENTRAR', onPressed: () {})
-                    ],
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            reverse: true,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 19, top: 50, right: 19),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Olá!',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'Inter',
+                        color: AppColors.green,
+                      )),
+                  const Text(
+                    'Acesse sua conta ou cadastre-se',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'Inter',
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 100),
+                  Stack(children: [
+                    Card(
+                      elevation: 7.0,
+                      color: AppColors.white, //AppColors.black,
+                      shadowColor: Colors.grey,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          children: [
+                            CustomTextFormFieldWidget(
+                              controller: controller.emailController,
+                              labelText: 'E-mail',
+                            ),
+                            const SizedBox(height: 30),
+                            CustomTextFormFieldWidget(
+                              controller: controller.passwordController,
+                              isPasswordField: true,
+                              labelText: 'Senha',
+                            ),
+                            const SizedBox(height: 56),
+                            ButtonWidget(nameButton: 'ENTRAR', onPressed: () {})
+                          ],
+                        ),
+                      ),
+                    ),
+                  ]),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: ClipPath(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2,
+                color: AppColors.green,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
