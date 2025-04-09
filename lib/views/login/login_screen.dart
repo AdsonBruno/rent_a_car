@@ -17,6 +17,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final controller = LoginController();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               const SizedBox(height: 56),
                               ButtonWidget(
                                 nameButton: 'ENTRAR',
-                                onPressed: () {},
+                                isLoading: _isLoading,
+                                onPressed: () async {
+                                  setState(() {
+                                    _isLoading = true;
+                                  });
+                                  await Future.delayed(
+                                      const Duration(seconds: 1));
+                                  await controller.navigateToHome(context);
+                                },
                               ),
                               const SizedBox(height: 20),
                               TextButton(
@@ -93,7 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     color: AppColors.darkLeafGreen,
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  controller.navigateToRegistration(context);
+                                },
                               )
                             ],
                           ),
