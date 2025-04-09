@@ -53,7 +53,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 nameButton: 'SAIR',
                 isSelected: currentIndex == 4,
                 onPressed: () {
-                  controller.navigateTo(context, 1);
+                  controller.navigateTo(context, 4);
                 },
               ),
             ],
