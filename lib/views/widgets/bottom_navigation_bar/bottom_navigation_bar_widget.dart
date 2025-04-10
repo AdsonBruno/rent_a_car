@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rental_of_vehicle/controllers/bottom_navigation/bottom_navigation_controller.dart';
 
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
-import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
+import 'package:rental_of_vehicle/views/widgets/button/button_column_widget.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final int currentIndex;
@@ -24,44 +24,39 @@ class BottomNavigationBarWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ButtonWidget(
+              ButtonColumnWidget(
                 icon: 'assets/icons/key_icon.svg',
-                color: currentIndex == 0
-                    ? AppColors.greenSelected
-                    : AppColors.white,
                 nameButton: 'RESERVAS',
+                isSelected: currentIndex == 0,
                 onPressed: () {},
               ),
-              ButtonWidget(
+              ButtonColumnWidget(
                 icon: 'assets/icons/person_icon.svg',
                 nameButton: 'PERFIL',
-                color: currentIndex == 1
-                    ? AppColors.greenSelected
-                    : AppColors.white,
-                onPressed: () {},
+                isSelected: currentIndex == 1,
+                onPressed: () {
+                  controller.navigateTo(context, 1);
+                },
               ),
-              ButtonWidget(
+              ButtonColumnWidget(
                 icon: 'assets/icons/home_icon.svg',
                 nameButton: 'INÍCIO',
-                color: currentIndex == 2
-                    ? AppColors.greenSelected
-                    : AppColors.white,
-                onPressed: () => controller.navigateTo(context, 2),
+                isSelected: currentIndex == 2,
+                onPressed: () {},
               ),
-              ButtonWidget(
-                  icon: 'assets/icons/history_icon.svg',
-                  nameButton: 'HISTÓRICO',
-                  color: currentIndex == 3
-                      ? AppColors.greenSelected
-                      : AppColors.white,
-                  onPressed: () => controller.navigateTo(context, 3)),
-              ButtonWidget(
+              ButtonColumnWidget(
+                icon: 'assets/icons/history_icon.svg',
+                nameButton: 'HISTÓRICO',
+                isSelected: currentIndex == 3,
+                onPressed: () {},
+              ),
+              ButtonColumnWidget(
                 icon: 'assets/icons/exit_icon.svg',
                 nameButton: 'SAIR',
-                color: currentIndex == 4
-                    ? AppColors.greenSelected
-                    : AppColors.white,
-                onPressed: () {},
+                isSelected: currentIndex == 4,
+                onPressed: () {
+                  controller.navigateTo(context, 4);
+                },
               ),
             ],
           ),

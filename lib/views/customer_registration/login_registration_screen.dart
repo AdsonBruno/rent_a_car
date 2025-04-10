@@ -36,6 +36,7 @@ class _LoginRegistrationScreenState extends State<LoginRegistrationScreen> {
     controller.passwordController.removeListener(_updateButtonState);
     controller.passwordConfirmationController
         .removeListener(_updateButtonState);
+    super.dispose();
   }
 
   void _updateButtonState() {
@@ -72,71 +73,76 @@ class _LoginRegistrationScreenState extends State<LoginRegistrationScreen> {
           padding: const EdgeInsets.only(left: 21, right: 21),
           child: Form(
             key: controller.formKey,
-            child: Column(
-              children: [
-                const Text(
-                  'Dados pessoais',
-                  style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700),
-                ),
-                CustomTextFormFieldWidget(
-                  controller: controller.emailController,
-                  labelText: 'E-mail',
-                  validator: LoginRegistrationValidationModel.validateEmail,
-                ),
-                CustomTextFormFieldWidget(
-                  controller: controller.emailConfirmationController,
-                  labelText: 'Confirme seu e-mail',
-                  validator: LoginRegistrationValidationModel
-                      .validateEmailConfirmation,
-                ),
-                CustomTextFormFieldWidget(
-                  controller: controller.passwordController,
-                  labelText: 'Senha',
-                  isPasswordField: true,
-                  validator: LoginRegistrationValidationModel.validatePassword,
-                ),
-                CustomTextFormFieldWidget(
-                  controller: controller.passwordConfirmationController,
-                  labelText: 'Confirme sua senha',
-                  isPasswordField: true,
-                  validator: LoginRegistrationValidationModel
-                      .validatePasswordConfirmation,
-                ),
-                const SizedBox(height: 206),
-                Center(
-                  child: ValueListenableBuilder<bool>(
-                      valueListenable: isButtonEnable,
-                      builder: (context, enable, child) {
-                        return ButtonWidget(
-                          nameButton: 'Próximo',
-                          enable: enable,
-                          onPressed: () {
-                            if (controller.formKey.currentState?.validate() ??
-                                false) {
-                              if (customerData != null) {
-                                final userData = UserDataModel(
-                                  fullName: customerData!.name,
-                                  country: customerData!.country,
-                                  documentType: customerData!.documentType,
-                                  documentNumber: customerData!.documentNumber,
-                                  gender: customerData!.gender,
-                                  phoneNumber: customerData!.phoneNumber,
-                                  email: controller.emailController.text,
-                                );
+            child: SingleChildScrollView(
+              reverse: true,
+              child: Column(
+                children: [
+                  const Text(
+                    'Dados pessoais',
+                    style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  CustomTextFormFieldWidget(
+                    controller: controller.emailController,
+                    labelText: 'E-mail',
+                    validator: LoginRegistrationValidationModel.validateEmail,
+                  ),
+                  CustomTextFormFieldWidget(
+                    controller: controller.emailConfirmationController,
+                    labelText: 'Confirme seu e-mail',
+                    validator: LoginRegistrationValidationModel
+                        .validateEmailConfirmation,
+                  ),
+                  CustomTextFormFieldWidget(
+                    controller: controller.passwordController,
+                    labelText: 'Senha',
+                    isPasswordField: true,
+                    validator:
+                        LoginRegistrationValidationModel.validatePassword,
+                  ),
+                  CustomTextFormFieldWidget(
+                    controller: controller.passwordConfirmationController,
+                    labelText: 'Confirme sua senha',
+                    isPasswordField: true,
+                    validator: LoginRegistrationValidationModel
+                        .validatePasswordConfirmation,
+                  ),
+                  const SizedBox(height: 206),
+                  Center(
+                    child: ValueListenableBuilder<bool>(
+                        valueListenable: isButtonEnable,
+                        builder: (context, enable, child) {
+                          return ButtonWidget(
+                            nameButton: 'Próximo',
+                            enable: enable,
+                            onPressed: () {
+                              if (controller.formKey.currentState?.validate() ??
+                                  false) {
+                                if (customerData != null) {
+                                  final userData = UserDataModel(
+                                    fullName: customerData!.name,
+                                    country: customerData!.country,
+                                    documentType: customerData!.documentType,
+                                    documentNumber:
+                                        customerData!.documentNumber,
+                                    gender: customerData!.gender,
+                                    phoneNumber: customerData!.phoneNumber,
+                                    email: controller.emailController.text,
+                                  );
 
-                                controller.navigateToNextPage(
-                                    context, userData);
+                                  controller.navigateToNextPage(
+                                      context, userData);
+                                }
+                                controller.validateForm();
                               }
-                              controller.validateForm();
-                            }
-                          },
-                        );
-                      }),
-                )
-              ],
+                            },
+                          );
+                        }),
+                  )
+                ],
+              ),
             ),
           ),
         ),

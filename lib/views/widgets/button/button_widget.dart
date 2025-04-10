@@ -8,6 +8,7 @@ class ButtonWidget extends StatelessWidget {
   final Color? color;
   final VoidCallback onPressed;
   final bool enable;
+  final bool? isLoading;
 
   const ButtonWidget({
     super.key,
@@ -16,12 +17,13 @@ class ButtonWidget extends StatelessWidget {
     this.icon,
     this.color,
     this.enable = true,
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: enable ? onPressed : null,
+      onTap: enable && !isLoading! ? onPressed : null,
       borderRadius: BorderRadius.circular(8),
       child: Ink(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 35),
@@ -31,30 +33,39 @@ class ButtonWidget extends StatelessWidget {
         ),
         width: 299,
         height: 63,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (icon != null)
-              SvgPicture.asset(
-                icon!,
-                width: 21,
-                height: 21,
-                colorFilter: ColorFilter.mode(
-                  enable ? AppColors.white : AppColors.black,
-                  BlendMode.src,
+        child: Center(
+          child: isLoading == true
+              ? CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    enable ? AppColors.white : AppColors.black,
+                  ),
+                  strokeWidth: 2,
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (icon != null)
+                      SvgPicture.asset(
+                        icon!,
+                        width: 21,
+                        height: 21,
+                        colorFilter: ColorFilter.mode(
+                          enable ? AppColors.white : AppColors.black,
+                          BlendMode.src,
+                        ),
+                      ),
+                    if (icon != null) const SizedBox(width: 8),
+                    Text(
+                      nameButton,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
+                        color: enable ? AppColors.white : AppColors.black,
+                      ),
+                    )
+                  ],
                 ),
-              ),
-            if (icon != null) const SizedBox(width: 8),
-            Text(
-              nameButton,
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w600,
-                color: enable ? AppColors.white : AppColors.black,
-              ),
-            )
-          ],
         ),
       ),
     );

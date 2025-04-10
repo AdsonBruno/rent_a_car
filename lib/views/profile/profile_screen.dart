@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:rental_of_vehicle/views/home/widgets/reservation_history_card.dart';
+import 'package:rental_of_vehicle/views/profile/widgets/reservation_history_card.dart';
 import 'package:rental_of_vehicle/views/widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dart';
 import 'package:rental_of_vehicle/views/widgets/button/icon_text_button_widget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 2),
+        bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 1),
       ),
     );
   }

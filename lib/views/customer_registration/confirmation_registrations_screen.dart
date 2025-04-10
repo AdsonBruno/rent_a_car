@@ -5,6 +5,8 @@ import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
 import 'package:rental_of_vehicle/views/widgets/card/dashed_line_painter.dart';
 import 'package:rental_of_vehicle/views/widgets/modal/show_modal_widget.dart';
 
+import '../core/routes/app_routes.dart';
+
 class ConfirmationRegistrationScreen extends StatefulWidget {
   final UserDataModel userData;
 
@@ -17,6 +19,8 @@ class ConfirmationRegistrationScreen extends StatefulWidget {
 
 class _ConfirmationRegistrationScreenState
     extends State<ConfirmationRegistrationScreen> {
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     final userData = widget.userData;
@@ -34,27 +38,42 @@ class _ConfirmationRegistrationScreenState
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 21, right: 21),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildDataTile('Nome completo: ', userData.fullName),
-              _buildDataTile('País: ', userData.country),
-              _buildDataTile('Tipo de documento: ', userData.documentType),
-              _buildDataTile('Número do documento: ', userData.documentNumber),
-              _buildDataTile('Gênero: ', userData.gender),
-              _buildDataTile('Número do telefone: ', userData.phoneNumber),
-              _buildDataTile('Email: ', userData.email),
-              const SizedBox(height: 20),
-              ButtonWidget(
-                  nameButton: 'Confirmar',
-                  onPressed: () {
-                    _showRegistrationConfirmation(context);
-                  })
-            ],
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 21, right: 21),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildDataTile('Nome completo: ', userData.fullName),
+                  _buildDataTile('País: ', userData.country),
+                  _buildDataTile('Tipo de documento: ', userData.documentType),
+                  _buildDataTile(
+                      'Número do documento: ', userData.documentNumber),
+                  _buildDataTile('Gênero: ', userData.gender),
+                  _buildDataTile('Número do telefone: ', userData.phoneNumber),
+                  _buildDataTile('Email: ', userData.email),
+                  const SizedBox(height: 20),
+                  ButtonWidget(
+                    nameButton: 'Confirmar',
+                    onPressed: () {
+                      _showRegistrationConfirmation(context);
+                    },
+                  )
+                ],
+              ),
+            ),
           ),
-        ),
+          if (_isLoading)
+            Container(
+              color: Colors.black.withOpacity(0.5),
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.green,
+                ),
+              ),
+            )
+        ],
       ),
     );
   }
@@ -98,8 +117,9 @@ class _ConfirmationRegistrationScreenState
   }
 
   Future<void> _showRegistrationConfirmation(BuildContext context) async {
-    await showDialog<String>(
+    showDialog<String>(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return const ShowModalDialogWidget(
             image: 'assets/icons/success_icon.png',
@@ -110,5 +130,25 @@ class _ConfirmationRegistrationScreenState
             ],
           );
         });
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    await Future.delayed(const Duration(seconds: 1));
+
+    if (context.mounted) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.login,
+        (route) => false,
+      );
+    }
   }
 }
