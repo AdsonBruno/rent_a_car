@@ -34,7 +34,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 icon: 'assets/icons/person_icon.svg',
                 nameButton: 'PERFIL',
                 isSelected: currentIndex == 1,
-                onPressed: () {},
+                onPressed: () {
+                  controller.navigateTo(context, 1);
+                },
               ),
               ButtonColumnWidget(
                 icon: 'assets/icons/home_icon.svg',

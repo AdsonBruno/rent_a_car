@@ -10,8 +10,13 @@ class LoginController {
     return formKey.currentState?.validate() ?? false;
   }
 
-  Future<void> navigateToHome(BuildContext context) async {
-    Navigator.pushNamed(context, AppRoutes.home);
+  //TODO: Implementar depois a rota para home quando a tela estiver pronta
+  // Future<void> navigateToHome(BuildContext context) async {
+  //   Navigator.pushNamed(context, AppRoutes.profile);
+  // }
+
+  Future<void> navigateToProfile(BuildContext context) async {
+    Navigator.pushNamed(context, AppRoutes.profile);
   }
 
   Future<void> navigateToRegistration(BuildContext context) async {

@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   });
                                   await Future.delayed(
                                       const Duration(seconds: 1));
-                                  await controller.navigateToHome(context);
+                                  await controller.navigateToProfile(context);
                                 },
                               ),
                               const SizedBox(height: 20),
