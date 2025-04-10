@@ -4,7 +4,7 @@ import 'package:rental_of_vehicle/views/booking_detail/booking_details_screen.da
 import 'package:rental_of_vehicle/views/customer_registration/customer_registration_screen.dart';
 import 'package:rental_of_vehicle/views/customer_registration/login_registration_screen.dart';
 import 'package:rental_of_vehicle/views/history/history_screen.dart';
-import 'package:rental_of_vehicle/views/home/profile_screen.dart';
+import 'package:rental_of_vehicle/views/profile/profile_screen.dart';
 import 'package:rental_of_vehicle/views/onboarding/onboarding_screen.dart';
 import 'package:rental_of_vehicle/views/login/login_screen.dart';
 
