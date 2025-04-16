@@ -65,10 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           CustomTextFormFieldWidget(
                             controller: controller.dateOfWithdrawalController,
                             labelText: 'Data de retirada',
+                            isDateTimeField: true,
+                            onDateTimeSelected: (dateTime) {},
                           ),
                           CustomTextFormFieldWidget(
                             controller: controller.returnDateController,
                             labelText: 'Data de entrega',
+                            isDateTimeField: true,
+                            onDateTimeSelected: (dateTime) {},
                           ),
                           const SizedBox(height: 25),
                         ],
