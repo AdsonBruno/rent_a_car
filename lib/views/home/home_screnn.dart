@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dart';
 import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
@@ -45,45 +44,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Card(
-                  elevation: 7.0,
-                  color: AppColors.white,
-                  shadowColor: Colors.grey,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      children: [
-                        CustomTextFormFieldWidget(
-                          controller: controller.vehicleWithdrawalController,
-                          labelText: 'Onde deseja retirar o veículo?',
-                        ),
-                        CustomTextFormFieldWidget(
-                          controller: controller.returnVehicleController,
-                          labelText: 'Onde deseja devolver o veículo?',
-                        ),
-                        CustomTextFormFieldWidget(
-                          controller: controller.dateOfWithdrawalController,
-                          labelText: 'Data de retirada',
-                        ),
-                        CustomTextFormFieldWidget(
-                          controller: controller.returnDateController,
-                          labelText: 'Data de entrega',
-                        ),
-                        const SizedBox(height: 25),
-                      ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Card(
+                    elevation: 7.0,
+                    color: AppColors.white,
+                    shadowColor: Colors.grey,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          CustomTextFormFieldWidget(
+                            controller: controller.vehicleWithdrawalController,
+                            labelText: 'Onde deseja retirar o veículo?',
+                          ),
+                          CustomTextFormFieldWidget(
+                            controller: controller.returnVehicleController,
+                            labelText: 'Onde deseja devolver o veículo?',
+                          ),
+                          CustomTextFormFieldWidget(
+                            controller: controller.dateOfWithdrawalController,
+                            labelText: 'Data de retirada',
+                          ),
+                          CustomTextFormFieldWidget(
+                            controller: controller.returnDateController,
+                            labelText: 'Data de entrega',
+                          ),
+                          const SizedBox(height: 25),
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 30),
                 ButtonWidget(nameButton: 'Continuar', onPressed: () {}),
-                BottomNavigationBarWidget(
-                  currentIndex: 2,
-                )
               ],
             ),
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 2),
     );
   }
 }
