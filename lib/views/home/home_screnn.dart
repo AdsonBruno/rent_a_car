@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rental_of_vehicle/models/home_models/home_validation_model.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dart';
 import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
@@ -52,36 +53,60 @@ class _HomeScreenState extends State<HomeScreen> {
                     shadowColor: Colors.grey,
                     child: Padding(
                       padding: const EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          CustomTextFormFieldWidget(
-                            controller: controller.vehicleWithdrawalController,
-                            labelText: 'Onde deseja retirar o veículo?',
-                          ),
-                          CustomTextFormFieldWidget(
-                            controller: controller.returnVehicleController,
-                            labelText: 'Onde deseja devolver o veículo?',
-                          ),
-                          CustomTextFormFieldWidget(
-                            controller: controller.dateOfWithdrawalController,
-                            labelText: 'Data de retirada',
-                            isDateTimeField: true,
-                            onDateTimeSelected: (dateTime) {},
-                          ),
-                          CustomTextFormFieldWidget(
-                            controller: controller.returnDateController,
-                            labelText: 'Data de entrega',
-                            isDateTimeField: true,
-                            onDateTimeSelected: (dateTime) {},
-                          ),
-                          const SizedBox(height: 25),
-                        ],
+                      child: Form(
+                        key: controller.formKey,
+                        child: Column(
+                          children: [
+                            CustomTextFormFieldWidget(
+                              controller:
+                                  controller.vehicleWithdrawalController,
+                              labelText: 'Onde deseja retirar o veículo?',
+                              validator: (value) =>
+                                  HomeValidationModel.validateDateOfWithdrawal(
+                                      value),
+                            ),
+                            CustomTextFormFieldWidget(
+                              controller: controller.returnVehicleController,
+                              labelText: 'Onde deseja devolver o veículo?',
+                              validator: (value) =>
+                                  HomeValidationModel.validateReturnVehicle(
+                                      value),
+                            ),
+                            CustomTextFormFieldWidget(
+                              controller: controller.dateOfWithdrawalController,
+                              labelText: 'Data de retirada',
+                              isDateTimeField: true,
+                              onDateTimeSelected: (dateTime) {},
+                              validator: (value) =>
+                                  HomeValidationModel.validateDateOfWithdrawal(
+                                      value),
+                            ),
+                            CustomTextFormFieldWidget(
+                              controller: controller.returnDateController,
+                              labelText: 'Data de entrega',
+                              isDateTimeField: true,
+                              onDateTimeSelected: (dateTime) {},
+                              validator: (value) =>
+                                  HomeValidationModel.validateReturnDate(value),
+                            ),
+                            const SizedBox(height: 25),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 30),
-                ButtonWidget(nameButton: 'Continuar', onPressed: () {}),
+                ButtonWidget(
+                    nameButton: 'Continuar',
+                    onPressed: () {
+                      if (controller.formKey.currentState?.validate() ??
+                          false) {
+                        if (controller.validateForm()) {
+                          controller.navigateToVehicleSelection(context);
+                        }
+                      }
+                    }),
               ],
             ),
           ),

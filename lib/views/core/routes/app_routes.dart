@@ -4,6 +4,7 @@ import 'package:rental_of_vehicle/views/booking_detail/booking_details_screen.da
 import 'package:rental_of_vehicle/views/customer_registration/customer_registration_screen.dart';
 import 'package:rental_of_vehicle/views/customer_registration/login_registration_screen.dart';
 import 'package:rental_of_vehicle/views/history/history_screen.dart';
+import 'package:rental_of_vehicle/views/home/vehicle_selection_screen.dart';
 import 'package:rental_of_vehicle/views/profile/profile_screen.dart';
 import 'package:rental_of_vehicle/views/onboarding/onboarding_screen.dart';
 import 'package:rental_of_vehicle/views/login/login_screen.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String confirmationRegistration = '/confirmation_registration';
   static const String login = '/login';
   static const String home = '/home';
+  static const String vehicleSelection = '/vehicle_selection';
 
   static Map<String, WidgetBuilder> routes = {
     onborading: (context) => const OnboardingScreen(),
@@ -35,5 +37,6 @@ class AppRoutes {
     },
     login: (context) => const LoginScreen(),
     home: (context) => const HomeScreen(),
+    vehicleSelection: (context) => const VehicleSelectionScreen()
   };
 }
