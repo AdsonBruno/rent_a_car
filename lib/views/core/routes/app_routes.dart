@@ -5,6 +5,7 @@ import 'package:rental_of_vehicle/views/customer_registration/customer_registrat
 import 'package:rental_of_vehicle/views/customer_registration/login_registration_screen.dart';
 import 'package:rental_of_vehicle/views/history/history_screen.dart';
 import 'package:rental_of_vehicle/views/home/vehicle_selection_screen.dart';
+import 'package:rental_of_vehicle/views/home/withdrawal_confirmation.dart';
 import 'package:rental_of_vehicle/views/profile/profile_screen.dart';
 import 'package:rental_of_vehicle/views/onboarding/onboarding_screen.dart';
 import 'package:rental_of_vehicle/views/login/login_screen.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String home = '/home';
   static const String vehicleSelection = '/vehicle_selection';
+  static const String withdrawalConfirmation = '/withdrawal_confirmation';
 
   static Map<String, WidgetBuilder> routes = {
     onborading: (context) => const OnboardingScreen(),
@@ -37,6 +39,12 @@ class AppRoutes {
     },
     login: (context) => const LoginScreen(),
     home: (context) => const HomeScreen(),
-    vehicleSelection: (context) => const VehicleSelectionScreen()
+    // vehicleSelection: (context) => const VehicleSelectionScreen(),
+    vehicleSelection: (context) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      return VehicleSelectionScreen(vehicleData: args);
+    },
+    withdrawalConfirmation: (context) => const WithdrawalConfirmation(),
   };
 }

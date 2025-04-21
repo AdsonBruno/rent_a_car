@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
-import 'package:rental_of_vehicle/controllers/home_controller/home_validation_controller.dart';
 import 'package:intl/intl.dart';
 
 class HomeController {
@@ -24,6 +23,7 @@ class HomeController {
 
   Future<void> navigateToVehicleSelection(BuildContext context) async {
     final days = calculateDays();
-    Navigator.pushNamed(context, AppRoutes.vehicleSelection, arguments: days);
+    Navigator.pushNamed(context, AppRoutes.vehicleSelection,
+        arguments: {'days': days});
   }
 }
