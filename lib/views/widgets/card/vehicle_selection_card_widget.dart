@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 import 'custom_card_widget.dart';
 
-class VehicleSelectionCard extends StatefulWidget {
+class VehicleSelectionCardWidget extends StatefulWidget {
   final String title;
   final String imageUrl;
   final double dailyPrice;
   final int days;
 
-  const VehicleSelectionCard({
+  const VehicleSelectionCardWidget({
     super.key,
     required this.title,
     required this.imageUrl,
@@ -18,20 +18,30 @@ class VehicleSelectionCard extends StatefulWidget {
   });
 
   @override
-  State<VehicleSelectionCard> createState() => _VehicleSelectionCardState();
+  State<VehicleSelectionCardWidget> createState() =>
+      _VehicleSelectionCardWidgetState();
 }
 
-class _VehicleSelectionCardState extends State<VehicleSelectionCard> {
+class _VehicleSelectionCardWidgetState
+    extends State<VehicleSelectionCardWidget> {
+  bool _isSelected = false;
+
   double get totalPrice => widget.dailyPrice * widget.days;
 
   @override
   Widget build(BuildContext context) {
     return CustomCardWidget(
+      isButton: true,
+      onTap: () {
+        setState(() {
+          _isSelected = !_isSelected;
+        });
+      },
       width: 360,
       height: 287,
       backgroundColor: AppColors.white,
       showBorder: true,
-      borderColor: AppColors.darkGray,
+      borderColor: _isSelected ? AppColors.darkGray : AppColors.darkLeafGreen,
       borderWidth: 2,
       child: Stack(
         children: [
