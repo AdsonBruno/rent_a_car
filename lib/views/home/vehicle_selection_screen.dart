@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/widgets/card/base_card_widget.dart';
 import 'package:rental_of_vehicle/views/widgets/card/custom_card_widget.dart';
+import 'package:rental_of_vehicle/views/widgets/card/vehicle_selection_card_widget.dart';
 
 class VehicleSelectionScreen extends StatefulWidget {
   const VehicleSelectionScreen({super.key});
@@ -15,6 +16,14 @@ class VehicleSelectionScreen extends StatefulWidget {
 }
 
 class _VehicleSelectionScreenState extends State<VehicleSelectionScreen> {
+  late final int days;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    days = ModalRoute.of(context)?.settings.arguments as int;
+    print(days);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,74 +43,69 @@ class _VehicleSelectionScreenState extends State<VehicleSelectionScreen> {
         child: Center(
           child: Column(
             children: [
-              CustomCardWidget(
-                width: 360,
-                height: 287,
-                backgroundColor: Colors.white,
-                showBorder: true,
-                borderColor: AppColors.darkGray,
-                borderWidth: 2,
-                child: Stack(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15, top: 18),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'FIAT ARGO 1.0 OU SIMILAR',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w800,
-                              fontSize: 17,
-                              color: AppColors.darkLeafGreen,
-                            ),
-                          ),
-                          SizedBox(height: 118),
-                          Text(
-                            'R\$ 79,16/dia',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w800,
-                              fontSize: 15,
-                              color: AppColors.black,
-                            ),
-                          ),
-                          Text(
-                            'R\$ 219,90/total',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w800,
-                              fontSize: 15,
-                              color: AppColors.black,
-                            ),
-                          ),
-                          SizedBox(height: 40),
-                          Text(
-                            'Esse valor é apenas a diária',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w300,
-                              fontSize: 10,
-                              color: AppColors.black,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      child: Image.asset(
-                        'assets/images/cars/fiat_argo.png',
-                        width: 257,
-                        height: 300,
-                      ),
-                      top: -15,
-                      left: 138,
-                      right: 10,
-                    ),
-                  ],
-                ),
+              VehicleSelectionCard(
+                title: 'FIAT ARGO 1.0 OU SIMILAR',
+                imageUrl: 'assets/images/cars/fiat_argo.png',
+                dailyPrice: 79.16,
+                days: days,
               ),
+              const SizedBox(height: 17),
+              VehicleSelectionCard(
+                title: 'HYUNDAI HB20S 1.0 OU SIMILAR',
+                imageUrl: 'assets/images/cars/hyundai_hb20s.png',
+                dailyPrice: 107.08,
+                days: days,
+              ),
+              const SizedBox(height: 17),
+              VehicleSelectionCard(
+                title: 'FIAT CRONOS 1.3 AT',
+                imageUrl: 'assets/images/cars/fiat_cronos.png',
+                dailyPrice: 116.08,
+                days: days,
+              ),
+              const SizedBox(height: 17),
+              VehicleSelectionCard(
+                title: 'HILUX CABINE DUPLA AT',
+                imageUrl: 'assets/images/cars/toyota_hilux.png',
+                dailyPrice: 450.30,
+                days: days,
+              ),
+              const SizedBox(height: 17),
+              VehicleSelectionCard(
+                title: 'JEEP RENEGADE 1.3 AT',
+                imageUrl: 'assets/images/cars/jeep_renegade.png',
+                dailyPrice: 148.46,
+                days: days,
+              ),
+              const SizedBox(height: 17),
+              VehicleSelectionCard(
+                title: 'JEEP COMPASS 1.3 TURBO AT',
+                imageUrl: 'assets/images/cars/jeep_compass.png',
+                dailyPrice: 292.46,
+                days: days,
+              ),
+              const SizedBox(height: 17),
+              VehicleSelectionCard(
+                title: 'FIAT STRADA CABINE DUPLA 1.3',
+                imageUrl: 'assets/images/cars/fiat_strada_cabine_dupla.png',
+                dailyPrice: 292.46,
+                days: days,
+              ),
+              const SizedBox(height: 17),
+              VehicleSelectionCard(
+                title: 'FIAT TORO 1.3 TURBO',
+                imageUrl: 'assets/images/cars/fiat_toro.png',
+                dailyPrice: 384.26,
+                days: days,
+              ),
+              const SizedBox(height: 17),
+              VehicleSelectionCard(
+                title: 'NISSAN KICKS 1.6 OU SIMILAR',
+                imageUrl: 'assets/images/cars/nissan_kicks.png',
+                dailyPrice: 343.76,
+                days: days,
+              ),
+              const SizedBox(height: 17),
             ],
           ),
         ),

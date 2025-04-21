@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final controller = HomeController();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -98,18 +99,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 30),
                 ButtonWidget(
-                    nameButton: 'Continuar',
-                    onPressed: () {
-                      if (controller.formKey.currentState?.validate() ??
-                          false) {
-                        if (controller.validateForm()) {
-                          controller.navigateToVehicleSelection(context);
-                        }
-                      }
-                    }),
+                  nameButton: 'Continuar',
+                  onPressed: () async {
+                    if ((controller.formKey.currentState?.validate() ??
+                            false) &&
+                        controller.validateForm()) {
+                      setState(() => _isLoading = true);
+                      await Future.delayed(const Duration(seconds: 2));
+                      await controller.navigateToVehicleSelection(context);
+                      setState(() => _isLoading = false);
+                    }
+                  },
+                ),
               ],
             ),
           ),
+          if (_isLoading)
+            const Center(
+              child: CircularProgressIndicator(
+                color: AppColors.green,
+              ),
+            ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 2),
