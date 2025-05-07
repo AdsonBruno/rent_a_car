@@ -23,7 +23,12 @@ class HomeController {
 
   Future<void> navigateToVehicleSelection(BuildContext context) async {
     final days = calculateDays();
-    Navigator.pushNamed(context, AppRoutes.vehicleSelection,
-        arguments: {'days': days});
+    Navigator.pushNamed(context, AppRoutes.vehicleSelection, arguments: {
+      'days': days,
+      'pickupLocation': vehicleWithdrawalController.text,
+      'returnLocation': returnVehicleController.text,
+      'pickupDateTime': dateOfWithdrawalController.text,
+      'returnDateTime': returnDateController.text
+    });
   }
 }

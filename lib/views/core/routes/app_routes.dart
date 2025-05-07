@@ -39,12 +39,16 @@ class AppRoutes {
     },
     login: (context) => const LoginScreen(),
     home: (context) => const HomeScreen(),
-    // vehicleSelection: (context) => const VehicleSelectionScreen(),
     vehicleSelection: (context) {
       final args =
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
       return VehicleSelectionScreen(vehicleData: args);
     },
-    withdrawalConfirmation: (context) => const WithdrawalConfirmation(),
+    withdrawalConfirmation: (context) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
+      return WithdrawalConfirmation(vehicleData: args);
+    },
   };
 }
