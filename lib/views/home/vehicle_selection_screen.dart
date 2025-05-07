@@ -65,12 +65,6 @@ class _VehicleSelectionScreenState extends State<VehicleSelectionScreen> {
     },
   ];
 
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   days = ModalRoute.of(context)?.settings.arguments as int;
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -119,11 +113,16 @@ class _VehicleSelectionScreenState extends State<VehicleSelectionScreen> {
                               'imageUrl': vehicle['imageUrl'],
                               'dailyPrice': vehicle['dailyPrice'],
                               'days': days,
-                              'totalPrice': vehicle['dailyPrice'] * days,
-                              'pickupLocation': 'Local de retirada',
-                              'returnLocation': 'Local de devolução',
-                              'pickupDateTime': 'Data e Hora de retirada',
-                              'returnDateTime': 'Data e Hora de devolução',
+                              'totalPrice': (vehicle['dailyPrice'] * days)
+                                  .toStringAsFixed(2),
+                              'pickupLocation':
+                                  widget.vehicleData['pickupLocation'],
+                              'returnLocation':
+                                  widget.vehicleData['returnLocation'],
+                              'pickupDateTime':
+                                  widget.vehicleData['pickupDateTime'],
+                              'returnDateTime':
+                                  widget.vehicleData['returnDateTime'],
                             };
 
                             selectionController

@@ -44,32 +44,19 @@ class CustomCardWidget extends StatelessWidget {
     }
 
     return Material(
-      elevation: 50,
+      elevation: 5,
       shadowColor: Colors.grey.withOpacity(0.5),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          effectiveBorderRadius,
+        borderRadius: BorderRadius.circular(effectiveBorderRadius),
+      ),
+      child: InkWell(
+        onTap: isButton ? onTap : null,
+        child: Container(
+          decoration: createBoxDecoration(),
+          padding: const EdgeInsets.only(left: 21, top: 10),
+          child: child,
         ),
       ),
-      child: isButton
-          ? InkWell(
-              onTap: onTap,
-              child: Ink(
-                height: height,
-                width: width,
-                decoration: createBoxDecoration(),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 21, top: 10),
-                  child: child,
-                ),
-              ),
-            )
-          : Container(
-              height: height,
-              width: width,
-              decoration: createBoxDecoration(),
-              child: child,
-            ),
     );
   }
 }
