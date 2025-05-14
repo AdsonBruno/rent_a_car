@@ -53,7 +53,8 @@ class OnboardingController {
       return;
     }
 
-    Navigator.pushNamed(context, AppRoutes.customerRegistration);
+    // Navigator.pushNamed(context, AppRoutes.customerRegistration);
+    Navigator.pushNamed(context, AppRoutes.login);
   }
 
   void dispose() {
