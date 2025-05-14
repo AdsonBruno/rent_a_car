@@ -13,11 +13,15 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final VoidCallback? onButtonTap;
   final bool isPasswordField;
   final bool? passwordIconPrefix;
+  final bool isDateTimeField;
+  final void Function(DateTime)? onDateTimeSelected;
 
   const CustomTextFormFieldWidget({
     super.key,
     required this.controller,
     required this.labelText,
+    this.isDateTimeField = false,
+    this.onDateTimeSelected,
     this.validator,
     this.readOnly = false,
     this.onTap,
@@ -43,8 +47,41 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
     return TextFormField(
       controller: widget.controller,
       keyboardType: widget.keyBoardType,
-      readOnly: widget.readOnly,
-      onTap: widget.onTap,
+      readOnly: widget.readOnly || widget.isDateTimeField,
+      onTap: widget.isDateTimeField
+          ? () async {
+              final selectedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100),
+              );
+
+              if (selectedDate != null) {
+                final selectedTime = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+
+                if (selectedTime != null) {
+                  final dateTime = DateTime(
+                    selectedDate.year,
+                    selectedDate.month,
+                    selectedDate.day,
+                    selectedTime.hour,
+                    selectedTime.minute,
+                  );
+
+                  widget.controller.text =
+                      '${dateTime.day}/${dateTime.month}/${dateTime.year} ${selectedTime.format(context)}';
+
+                  if (widget.onDateTimeSelected != null) {
+                    widget.onDateTimeSelected!(dateTime);
+                  }
+                }
+              }
+            }
+          : widget.onTap,
       obscureText: widget.isPasswordField ? !_isPasswordVisible : false,
       validator: (value) {
         final error = widget.validator?.call(value);
