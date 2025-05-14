@@ -64,7 +64,7 @@ class WithdrawalConfirmation extends StatelessWidget {
               ),
             ),
             bottomSheet: Container(
-              height: 120, // Altura do bottom sheet
+              height: 140, // Altura do bottom sheet
               width: double.infinity, // Largura total
               color: AppColors.darkGray,
               child: Padding(
@@ -72,9 +72,9 @@ class WithdrawalConfirmation extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        Text(
+                        const Text(
                           'Total previsto',
                           style: TextStyle(
                             fontFamily: 'Inter',
@@ -82,10 +82,10 @@ class WithdrawalConfirmation extends StatelessWidget {
                             fontWeight: FontWeight.w200,
                           ),
                         ),
-                        SizedBox(width: 156),
+                        const SizedBox(width: 156),
                         Text(
-                          'R\$ 97,16/dia',
-                          style: TextStyle(
+                          'R\$ ${withdrawalController.totalPrice}',
+                          style: const TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
@@ -102,6 +102,7 @@ class WithdrawalConfirmation extends StatelessWidget {
                         fontWeight: FontWeight.w200,
                       ),
                     ),
+                    const SizedBox(height: 10),
                     Container(
                       height: 63,
                       width: 360,
