@@ -32,7 +32,7 @@ class OnboardingController {
     }
 
     if (isFirstUse) {
-      Navigator.pushNamed(context, AppRoutes.onborading);
+      Navigator.pushNamed(context, AppRoutes.onboarding);
     } else {
       Navigator.pushNamed(context, AppRoutes.profile);
     }

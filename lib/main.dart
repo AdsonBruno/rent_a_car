@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
       ),
       debugShowCheckedModeBanner: false,
       color: const Color(0xFF04662b),
-      initialRoute: AppRoutes.onborading,
+      initialRoute: AppRoutes.onboarding,
       routes: AppRoutes.routes,
     );
   }

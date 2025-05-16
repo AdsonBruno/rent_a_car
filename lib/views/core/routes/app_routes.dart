@@ -14,7 +14,7 @@ import '../../customer_registration/confirmation_registrations_screen.dart';
 import '../../home/home_screnn.dart';
 
 class AppRoutes {
-  static const String onborading = '/onboarding';
+  static const String onboarding = '/onboarding';
   static const String customerRegistration = '/customer_registration';
   static const String loginRegistration = '/login_registration';
   static const String profile = '/profile';
@@ -27,7 +27,7 @@ class AppRoutes {
   static const String withdrawalConfirmation = '/withdrawal_confirmation';
 
   static Map<String, WidgetBuilder> routes = {
-    onborading: (context) => const OnboardingScreen(),
+    onboarding: (context) => const OnboardingScreen(),
     customerRegistration: (contex) => const CustomerRegistrationScreen(),
     loginRegistration: (context) => const LoginRegistrationScreen(),
     profile: (context) => const ProfileScreen(),
