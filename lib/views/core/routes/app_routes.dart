@@ -31,7 +31,17 @@ class AppRoutes {
     customerRegistration: (contex) => const CustomerRegistrationScreen(),
     loginRegistration: (context) => const LoginRegistrationScreen(),
     profile: (context) => const ProfileScreen(),
-    history: (context) => const HistoryScreen(),
+    history: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
+      if (args == null) {
+        // Trate o caso em que os argumentos são nulos
+        return const HistoryScreen();
+      }
+
+      return const HistoryScreen();
+    },
     bookingDetail: (context) => const BookingDetailsScreen(),
     confirmationRegistration: (context) {
       final args = ModalRoute.of(context)!.settings.arguments as UserDataModel;

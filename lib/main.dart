@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_of_vehicle/controllers/bottom_navigation/bottom_navigation_controller.dart';
+import 'package:rental_of_vehicle/controllers/history/history_controller.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
 
@@ -11,6 +12,9 @@ void main() {
         ChangeNotifierProvider(
           create: (_) =>
               BottomNavigationController(GlobalKey<NavigatorState>()),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => HistoryController(),
         )
       ],
       child: const MyApp(),

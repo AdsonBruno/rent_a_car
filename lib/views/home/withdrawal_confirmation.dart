@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rental_of_vehicle/controllers/history/history_controller.dart';
 import 'package:rental_of_vehicle/controllers/home_controller/withdrawal_confirmation_controller.dart';
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/core/app_text_styles.dart';
+import 'package:rental_of_vehicle/views/core/routes/app_routes.dart';
 import 'package:rental_of_vehicle/views/widgets/button/button_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:rental_of_vehicle/views/widgets/card/attendant_features_card_widget.dart';
@@ -24,8 +26,6 @@ class WithdrawalConfirmation extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    // final args =
-    //     ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     final args = vehicleData;
 
     return ChangeNotifierProvider(
@@ -107,8 +107,32 @@ class WithdrawalConfirmation extends StatelessWidget {
                       height: 63,
                       width: 360,
                       child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
+                        onPressed: () {
+                          final historyController =
+                              Provider.of<HistoryController>(
+                            context,
+                            listen: false,
+                          );
+                          historyController.addReservation({
+                            'title': withdrawalController.title,
+                            'pickupDateTime':
+                                withdrawalController.pickupDateTime,
+                            'returnDateTime':
+                                withdrawalController.returnDateTime,
+                            'pickupLocation':
+                                withdrawalController.pickupLocation,
+                            'returnLocation':
+                                withdrawalController.returnLocation,
+                            'totalPrice': withdrawalController.totalPrice,
+                          });
+
+                          Navigator.pushNamed(context, AppRoutes.history);
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(AppColors.green),
+                        ),
+                        child: const Text(
                           'CONFIRMAR',
                           style: TextStyle(
                             fontFamily: 'Inter',
@@ -117,18 +141,8 @@ class WithdrawalConfirmation extends StatelessWidget {
                             color: AppColors.white,
                           ),
                         ),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(AppColors.green),
-                        ),
                       ),
                     )
-                    // ButtonWidget(
-                    //   nameButton: 'CONFIRMAR',
-                    //   onPressed: () {
-                    //     Navigator.pushNamed(context, '/home');
-                    //   },
-                    // ),
                   ],
                 ),
               ),
