@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 2),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }

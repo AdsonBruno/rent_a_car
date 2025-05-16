@@ -9,167 +9,170 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: const Padding(
-                  padding: EdgeInsets.only(
-                    left: 74,
-                  ),
-                  child: Text(
-                    'Minhas Locações',
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Padding(
+              padding: EdgeInsets.only(
+                left: 74,
+              ),
+              child: Text(
+                'Minhas Locações',
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  color: AppColors.black,
+                ),
+              )),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: BaseCardWidget(
+                  title: 'DETALHES DA RESERVA',
+                  children: const [
+                    Text(
+                      'Devolução',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(height: 9),
+                    Text(
+                      'AGÊNCIA CENTRO - ARAPIRACA - AL',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      '05/04/2024',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              BaseCardWidget(
+                title: 'DETALHES DA RESERVA',
+                children: const [
+                  Text(
+                    'Devolução',
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 14,
-                      color: AppColors.black,
-                    ),
-                  )),
-            ),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Center(
-                    child: BaseCardWidget(
-                      title: 'DETALHES DA RESERVA',
-                      children: const [
-                        Text(
-                          'Devolução',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        SizedBox(height: 9),
-                        Text(
-                          'AGÊNCIA CENTRO - ARAPIRACA - AL',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          '05/04/2024',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  BaseCardWidget(
-                    title: 'DETALHES DA RESERVA',
-                    children: const [
-                      Text(
-                        'Devolução',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(height: 9),
-                      Text(
-                        'AGÊNCIA CENTRO - ARAPIRACA - AL',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        '05/04/2024',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
+                  SizedBox(height: 9),
+                  Text(
+                    'AGÊNCIA CENTRO - ARAPIRACA - AL',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                  const SizedBox(height: 20),
-                  BaseCardWidget(
-                    title: 'DETALHES DA RESERVA',
-                    children: const [
-                      Text(
-                        'Devolução',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(height: 9),
-                      Text(
-                        'AGÊNCIA CENTRO - ARAPIRACA - AL',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        '05/04/2024',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    '05/04/2024',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                  const SizedBox(height: 20),
-                  BaseCardWidget(
-                    title: 'DETALHES DA RESERVA',
-                    children: const [
-                      Text(
-                        'Devolução',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(height: 9),
-                      Text(
-                        'AGÊNCIA CENTRO - ARAPIRACA - AL',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        '05/04/2024',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
                 ],
               ),
-            ),
-            bottomNavigationBar: BottomNavigationBarWidget(
-              currentIndex: 3,
-            )));
+              const SizedBox(height: 20),
+              BaseCardWidget(
+                title: 'DETALHES DA RESERVA',
+                children: const [
+                  Text(
+                    'Devolução',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(height: 9),
+                  Text(
+                    'AGÊNCIA CENTRO - ARAPIRACA - AL',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    '05/04/2024',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              BaseCardWidget(
+                title: 'DETALHES DA RESERVA',
+                children: const [
+                  Text(
+                    'Devolução',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(height: 9),
+                  Text(
+                    'AGÊNCIA CENTRO - ARAPIRACA - AL',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    '05/04/2024',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
+        // bottomNavigationBar: BottomNavigationBarWidget(
+        //   currentIndex: 3,
+        // ),
+        bottomNavigationBar: BottomNavigationBarWidget(),
+      ),
+    );
   }
 }

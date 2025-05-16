@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rental_of_vehicle/controllers/bottom_navigation/bottom_navigation_controller.dart';
 
 import 'package:rental_of_vehicle/views/core/app_colors.dart';
 import 'package:rental_of_vehicle/views/widgets/button/button_column_widget.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
-  final int currentIndex;
-  final BottomNavigationController controller;
-
-  BottomNavigationBarWidget({
-    super.key,
-    required this.currentIndex,
-  }) : controller = BottomNavigationController(GlobalKey<NavigatorState>());
+  const BottomNavigationBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<BottomNavigationController>(context);
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ClipRRect(
@@ -27,36 +24,32 @@ class BottomNavigationBarWidget extends StatelessWidget {
               ButtonColumnWidget(
                 icon: 'assets/icons/key_icon.svg',
                 nameButton: 'RESERVAS',
-                isSelected: currentIndex == 0,
-                onPressed: () {},
+                isSelected: controller.currentIndex == 0,
+                onPressed: () => controller.setIndex(context, 0),
               ),
               ButtonColumnWidget(
                 icon: 'assets/icons/person_icon.svg',
                 nameButton: 'PERFIL',
-                isSelected: currentIndex == 1,
-                onPressed: () {
-                  controller.navigateTo(context, 1);
-                },
+                isSelected: controller.currentIndex == 1,
+                onPressed: () => controller.setIndex(context, 1),
               ),
               ButtonColumnWidget(
                 icon: 'assets/icons/home_icon.svg',
                 nameButton: 'INÍCIO',
-                isSelected: currentIndex == 2,
-                onPressed: () {},
+                isSelected: controller.currentIndex == 2,
+                onPressed: () => controller.setIndex(context, 2),
               ),
               ButtonColumnWidget(
                 icon: 'assets/icons/history_icon.svg',
                 nameButton: 'HISTÓRICO',
-                isSelected: currentIndex == 3,
-                onPressed: () {},
+                isSelected: controller.currentIndex == 3,
+                onPressed: () => controller.setIndex(context, 3),
               ),
               ButtonColumnWidget(
                 icon: 'assets/icons/exit_icon.svg',
                 nameButton: 'SAIR',
-                isSelected: currentIndex == 4,
-                onPressed: () {
-                  controller.navigateTo(context, 4);
-                },
+                isSelected: controller.currentIndex == 4,
+                onPressed: () => controller.setIndex(context, 4),
               ),
             ],
           ),
