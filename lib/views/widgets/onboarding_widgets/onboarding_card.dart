@@ -18,62 +18,65 @@ class OnboardingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                image,
-                height: MediaQuery.of(context).size.height * 0.60,
-                width: MediaQuery.of(context).size.height * 0.53,
-                fit: BoxFit.cover,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  image,
+                  height: MediaQuery.of(context).size.height * 0.60,
+                  width: MediaQuery.of(context).size.height * 0.53,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Text(
-          title,
-          style: const TextStyle(
-            color: AppColors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+            ],
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            description,
-            textAlign: TextAlign.center,
+          const SizedBox(height: 8),
+          Text(
+            title,
             style: const TextStyle(
               color: AppColors.white,
-              fontSize: 16,
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        MaterialButton(
-          onPressed: () => onPressed(),
-          color: AppColors.white,
-          minWidth: 247,
-          height: 60,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25.0),
-          ),
-          child: Text(
-            buttonText,
-            style: const TextStyle(
-              color: AppColors.greenTextButton,
-              fontFamily: 'Inter',
               fontSize: 20,
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              description,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: AppColors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          MaterialButton(
+            onPressed: () => onPressed(),
+            color: AppColors.white,
+            minWidth: 247,
+            height: 60,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            child: Text(
+              buttonText,
+              style: const TextStyle(
+                color: AppColors.greenTextButton,
+                fontFamily: 'Inter',
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

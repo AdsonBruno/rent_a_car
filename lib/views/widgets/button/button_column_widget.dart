@@ -48,44 +48,5 @@ class ButtonColumnWidget extends StatelessWidget {
             )
           ],
         ));
-
-    // return InkWell(
-    //   onTap: enable ? onPressed : null,
-    //   borderRadius: BorderRadius.circular(8),
-    //   child: Ink(
-    //     // padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 35),
-    //     decoration: BoxDecoration(
-    //         // color: enable ? (color ?? AppColors.green) : AppColors.lightGray,
-    //         // borderRadius: BorderRadius.circular(8),
-    //         ),
-    //     width: 299,
-    //     height: 63,
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       mainAxisSize: MainAxisSize.min,
-    //       children: [
-    //         if (icon != null)
-    //           SvgPicture.asset(
-    //             icon!,
-    //             width: 18,
-    //             height: 20,
-    //             colorFilter: ColorFilter.mode(
-    //               enable ? AppColors.white : AppColors.black,
-    //               BlendMode.srcIn,
-    //             ),
-    //           ),
-    //         Text(
-    //           nameButton,
-    //           style: TextStyle(
-    //             fontSize: 10,
-    //             fontFamily: 'Inter',
-    //             fontWeight: FontWeight.w600,
-    //             color: enable ? Colors.white : Colors.black,
-    //           ),
-    //         )
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
