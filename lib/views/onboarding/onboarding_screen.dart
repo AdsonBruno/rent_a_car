@@ -13,6 +13,10 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final OnboardingController onboardingController = OnboardingController();
+
+  final GlobalKey firstSreenKey = GlobalKey();
+  final GlobalKey secondSreenKey = GlobalKey();
+
   @override
   void dispose() {
     onboardingController.dispose();
@@ -57,6 +61,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       itemBuilder: (context, index) {
                         final data = onboardingController.onboardingData[index];
                         return OnboardingCard(
+                            key: index == 0 ? firstSreenKey : secondSreenKey,
                             image: data.image,
                             title: data.title,
                             description: data.description,

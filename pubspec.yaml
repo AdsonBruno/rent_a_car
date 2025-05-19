@@ -43,10 +43,16 @@ dependencies:
   intl: ^0.20.2
 
   provider: ^6.1.4
+  path_provider: ^2.0.14
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test: 
+    sdk: flutter
+  # benchmark_harness: ^2.1.1
+  benchmark_harness: ^2.3.1
+  vm_service: ^13.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

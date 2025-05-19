@@ -30,6 +30,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  static void restartApp() {
+    final _MyAppState? state = WidgetsBinding.instance.rootElement
+        ?.findAncestorStateOfType<_MyAppState>();
+
+    if (state != null) {
+      state.restart();
+    }
+  }
+
+  void restart() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,6 +55,8 @@ class _MyAppState extends State<MyApp> {
       color: const Color(0xFF04662b),
       initialRoute: AppRoutes.onboarding,
       routes: AppRoutes.routes,
+      navigatorKey:
+          Provider.of<BottomNavigationController>(context).navigatorKey,
     );
   }
 }
