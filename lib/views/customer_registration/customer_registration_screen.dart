@@ -70,6 +70,7 @@ class _CustomerRegistrationScreenState
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: const Center(
             child: Text(
@@ -99,16 +100,19 @@ class _CustomerRegistrationScreenState
                     ),
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('nameField'),
                     controller: controller.nameController,
                     labelText: 'Nome completo',
                     validator: CustomerValidationModel.validateName,
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('countryField'),
                     controller: controller.countryController,
                     labelText: 'País de nascimento',
                     validator: CustomerValidationModel.validateCountry,
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('documentTypeField'),
                     controller: controller.documentTypeController,
                     labelText: 'Tipo de documento',
                     validator: CustomerValidationModel.validateDocumentType,
@@ -116,6 +120,7 @@ class _CustomerRegistrationScreenState
                     onTap: () => _showDocumentTypeSelector(context),
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('documentNumberField'),
                     keyBoardType: TextInputType.number,
                     controller: controller.documentNumberController,
                     labelText: 'Número de documento',
@@ -127,6 +132,7 @@ class _CustomerRegistrationScreenState
                   ),
                   const SizedBox(height: 12),
                   CustomRadioGroup(
+                    key: const Key('genderField'),
                     title: 'Sexo',
                     options: genders,
                     selectedOption: controller.selectGender,
@@ -141,12 +147,14 @@ class _CustomerRegistrationScreenState
                     labelBuilder: (option) => option,
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('phoneField'),
                     keyBoardType: TextInputType.phone,
                     controller: controller.phoneNumberController,
                     labelText: 'Celular',
                     validator: CustomerValidationModel.validatePhoneNumber,
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('phoneConfirmationField'),
                     controller: controller.phoneNumberConfirmationController,
                     labelText: 'Confirmar celular',
                     validator: (_) =>
@@ -158,6 +166,7 @@ class _CustomerRegistrationScreenState
                       valueListenable: isButtonEnable,
                       builder: (context, enable, child) {
                         return ButtonWidget(
+                          key: const Key('nextButton'),
                           nameButton: 'Próximo',
                           enable: enable,
                           onPressed: () async {

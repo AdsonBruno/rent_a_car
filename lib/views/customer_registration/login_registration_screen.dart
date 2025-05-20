@@ -84,17 +84,20 @@ class _LoginRegistrationScreenState extends State<LoginRegistrationScreen> {
                         fontWeight: FontWeight.w700),
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('emailField'),
                     controller: controller.emailController,
                     labelText: 'E-mail',
                     validator: LoginRegistrationValidationModel.validateEmail,
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('emailConfirmationField'),
                     controller: controller.emailConfirmationController,
                     labelText: 'Confirme seu e-mail',
                     validator: LoginRegistrationValidationModel
                         .validateEmailConfirmation,
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('passwordField'),
                     controller: controller.passwordController,
                     labelText: 'Senha',
                     isPasswordField: true,
@@ -102,6 +105,7 @@ class _LoginRegistrationScreenState extends State<LoginRegistrationScreen> {
                         LoginRegistrationValidationModel.validatePassword,
                   ),
                   CustomTextFormFieldWidget(
+                    key: const Key('passwordConfirmationField'),
                     controller: controller.passwordConfirmationController,
                     labelText: 'Confirme sua senha',
                     isPasswordField: true,
